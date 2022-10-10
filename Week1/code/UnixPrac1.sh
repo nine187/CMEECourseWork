@@ -17,4 +17,4 @@ export G_COUNT=$(grep -o 'G' E.coli.fasta | wc -l )
 export AT_COUNT=$(( $A_COUNT + $T_COUNT))
 export CG_COUNT=$(( $C_COUNT + $G_COUNT))
 bc -l <<< "scale=2; (($AT_COUNT / $CG_COUNT))"
-#
+#ATCG
