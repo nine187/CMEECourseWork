@@ -31,7 +31,7 @@ def foo_5(x): # a recursive function that calculates the factorial of x
      
 def foo_6(x): # Calculate the factorial of x in a different way; no if statement involved
     facto = 1
-    while x >= 1:
+    while x >= 1:#
         facto = facto * x
         x = x - 1
     return facto

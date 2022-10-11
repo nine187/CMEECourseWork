@@ -6,14 +6,19 @@
 # Saves the output into a .txt file
 # Arguments: 1 -> tab dlimited file
 # Date: Oct 2022
+if [ $# -ne 1 ] && [ $# -ne 0 ]; then
+    echo "Please input only 2 files"
+    exit
+fi
 
-if [ -z $1 ]; 
-    then 
-        echo " WRONG NUMBER OF FILES, THIS SCRIPT NEED 2 FILES "
-        exit
+if [ $# -eq 0 ]; then 
 
-else
-    echo "CORRECT ! THE FILES GETTING THE FUSION TRANSFORMATION ARE $1 AND $2. THE FUSION MATERIAL WILL BE $3"
+    echo "NO FILES ARE INPUTTED! Please input 2 Files" >&2
+    exit
+fi
+
+if [ $# -eq 2] ; then
+    echo "CORRECT NUMBER OF FILES ! THE FILES GETTING THE FUSION TRANSFORMATION ARE $1 AND $2. THE FUSION MATERIAL WILL BE $3"
     cat $1 > $3
     cat $2 >> $3
     echo "Merged File is $3"
