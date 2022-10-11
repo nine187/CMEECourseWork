@@ -1,8 +1,18 @@
-My CMME Coursework Repository
-Project name / title
-Brief description: what your project does and/or is for. Provide context and add links to any references to help new visitors.
-Languages: List language(s) and their versions used in the project
-Dependencies: What special packages (which are not part of standard libraries of the language(s) used) might be needed for a new user to run your project
-Installation: Guidelines for installing the project (if applicable), including dependencies.
-Project structure and Usage: How the project is structured and how to run/use it. Explain, if relevant, what specific files do. No need to list every file, such as data or experimental ones (like the ones in sandbox).
-Author name and contact
+# CMEE Coursework Repository
+
+*Author: Pasith Prayoonrat*
+
+*Created: Oct 2022*
+
+This repository contains all the work attempted by Pasith within the Computational Methods in Ecology and Evolution (CMEE) Course.
+
+Visitors who wish to attempt the coursework can refer to https://mhasoba.github.io/TheMulQuaBio/intro.html
+
+Each individual subdirectory will contain their own READMEs detailing the contents within the week. Also located within each subdirectories are another 3 subdirectories /Code, /Results and /Data. /Code contains the scripts, /Results contains the output from the scripts and /Data contains input files for the scripts. One point to highlight is that if input files are only manipulated (e.g. changing file type and/or replacing separators), the output remains in /Data. Outputs are only directed to /Results when the input files were processed (e.g. generating a graph from a dataset).
+
+## Table of Contents
+1. Week 1: UNIX and Linux, shell scripting, git and Latex
+2. Week 2: Biological Computing in Python
+3. Week 3: Biological Computing in R
+4. Week 7: Biological Computing in Python II
+5. MiniProject
