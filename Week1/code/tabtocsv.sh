@@ -6,13 +6,16 @@
 # Saves the output into a .csv file
 # Arguments: 1 -> tab dlimited file
 # Date: Oct 2022
-if [ $# -eq 0 ]; then 
+if [ $# -eq 0 ]; then #if the amount of arguments inputted is zero the script will print out the message below and exit
 
     echo "NO FILES ARE INPUTTED! Please input a file" >&2
     exit 1
-fi
+elif [ ! -s $1 ]; then #if the input file is less than 0 byte the script will print out the message
 
-if [ $# -eq 1 ]; then
+    echo "You just inputted in an empty file !"
+    exit
+
+elif [ $# -eq 1 ]; then #if the input file is equal to 1 then the script will remove the tab and comma and changing it to a .csv file
     echo "NICE! THE FILE NAME IS $1.csv"
     echo "Creating a comma delimited version of $1 ..."
     cat $1 | tr -s "\t" "," >> $1.csv
