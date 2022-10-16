@@ -25,7 +25,7 @@ rm *.log
 rm *.bbl
 rm *.blg
 
-else 
+else #if the argument provided is not equal to one the script will return this output
 echo "Please input FirstExample as an argument, other input will definitely break this script."
 fi
 exit
