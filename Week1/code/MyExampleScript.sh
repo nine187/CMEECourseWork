@@ -1,14 +1,13 @@
 #!/binsh
 #Author: Pasith Prayoonrat pp1922@ic.ac.uk
-# Script: boilerplate.sh
-#Desc: simple boilerplate for shell scripts
+# Script: MyExampleScript.sh
+#Desc: My Example script
+
 #Arguments: none
-#Date: Oct 2019
+#Date: Oct 2022
 
-echo -e "\nThis is a shell script! \n"
-
-#exit#!/bin/bash
-
-NumLines=`wc -l < $1`
-echo "The file $1 has $NumLines lines"
+MSG1="Hello"
+MSG2=$USER
+echo "$MSG1 $MSG2"
+echo "Hello $USER"
 echo

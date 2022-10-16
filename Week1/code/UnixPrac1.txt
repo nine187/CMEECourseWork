@@ -1,21 +1,22 @@
-#1 cd back to the fasta file and use wordcount commant to count the individual files in there
+#1 cd back to the fasta file (that will be the default directory for the codes below) and use wordcount -l to count the lines
 
 cd ../data/fasta; wc -l 407228326.fasta 407228412.fasta E.coli.fasta 
 
-#2 use tail -n\+2 which ignores the first line of the fasta file
+#2 use tail -n\+2 which ignores the first line of the fasta file and print the rest of the sequence
 
 tail -n\+2 E.coli.fasta 
 
-#3 use grep to find the exact match of all the nucleotide with -o command and use word count -l to show the sequence length
+#3 use tail -n\+2 to read from the second line and tr -d to remove the line break, and wc -m to count all the letters
 
-grep -o 'A\|T\|C\|G' E.coli.fasta  | wc -l 
+tail -n\+2 E.coli.fasta |tr -d "\n" | wc -m
 
-#4 use grep -o to find the exact sequence in the genome and use word count -l to show the number of matches found with grep command
+#4 use grep -o to find the exact sequence in the genome, use tr -d to remove the line break and use word count -m to show the number of matches found 
+with grep command
 
-grep -o 'ATGC' E.coli.fasta | wc -l
+grep -o 'ATGC' E.coli.fasta |tr -d "\n" |wc -m
 
-#5 use echo to show the AT/CG ratio within the echo there is 2 main chunks of code, the first one is for AT which use tail to read the
-sequence from the second line at the data file then remove the breakline with \n and grep to find the A&T ratio along with wc -l to find the frequency of the
-AT in the sequence and divided by the same method at for CG frequency
+#5 use echo to show the AT/CG ratio within the echo there is 2 main chunks of code, the first one is for AT wchich use tail to read the
+sequence from the second line at the data file then remove the breakline with \n and use grep to find the A&T ratio along with wc -l to find the
+frequency of the AT in the sequence and divided by the same method at for CG frequency
 
-echo $(tail -n\+2 ../data/fasta/E.coli.fasta | tr -d '\n' | grep -o "A\|T" | wc -l) / $(tail -n\+2 ../data/fasta/E.coli.fasta | tr -d '\n' | grep -o "G\|C" | wc -l) | bc -l
+echo $(tail -n\+2 E.coli.fasta | tr -d '\n' | grep -o "A\|T" | wc -l) / $(tail -n\+2 E.coli.fasta | tr -d '\n' | grep -o "G\|C" | wc -l) | bc -l

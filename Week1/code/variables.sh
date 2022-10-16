@@ -1,5 +1,10 @@
 #!/bin/sh
+# Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: variables.sh
+# Description: assign values to variables 
 
+# Arguments: 2 (string value or integer value as variables)
+# Date: Oct 2022
 ## Illustrates the use of variables 
 
 # Special variables
