@@ -4,14 +4,14 @@
 
 *Created: Week 1*
 
-This directory contains the scripts, data, and results from week 1. This README file will contain detailed information on the files in the code directory.
+This directory contains the scripts, data, and results from week 1. <br /> This README file will contain detailed information on the files in the code directory.
 
 ## Directory Structure:
 
-*Codes: This directory contains all the relevant codes in week 1.*
-*Data: Contains files holding data that could be use in the relevant script.*
-*Sandbox: This is my playground.*
-*Results: Contains relevant output of the codes written in week 1.*
+*Codes: This directory contains all the relevant codes in week 1.*<br />
+*Data: Contains files holding data that could be use in the relevant script.*<br />
+*Sandbox: This is my playground.*<br />
+*Results: Contains relevant output of the codes written in week 1.*<br />
 
 ### In Code you shall find:
  
