@@ -1,0 +1,26 @@
+Help on module boilerplate:
+
+NNAAMMEE
+    boilerplate
+
+DDEESSCCRRIIPPTTIIOONN
+    Description of this program or application.
+    You can use several lines
+
+FFUUNNCCTTIIOONNSS
+    mmaaiinn(argv)
+        Main entry point of the program
+
+DDAATTAA
+    ____aappppnnaammee____ = '[application name here]'
+    ____lliicceennssee____ = 'License for this code/program'
+
+VVEERRSSIIOONN
+    0.0.1
+
+AAUUTTHHOORR
+    Your Name (your@email.address)
+
+FFIILLEE
+    /home/nine187/Documents/CMEECourseWork/Week2/code/boilerplate.py
+
