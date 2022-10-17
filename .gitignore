@@ -1,5 +1,16 @@
+#allow list
+.gitkeep
+!README.md
+!.gitignore
+!/code
+!/results
+!/sandbox
+!/data
+
+#ignore list
 *.pdf
 *.aux
 *.bbl
 *.log
 *.blg
+*.tmp

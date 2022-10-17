@@ -29,6 +29,3 @@ This directory contains the scripts, data, and results from week 1. <br /> This 
  CompileLaTeX.sh | Compile latex and produce a .pdf file
  FirstBiblio.bib | Bibliography for the latex file
  FirstExample.tex | A cool latex file
- FirstExample.pdf | A pdf of the combined .bib and .tex files
-  
-

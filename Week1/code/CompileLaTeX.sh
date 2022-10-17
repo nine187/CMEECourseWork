@@ -27,6 +27,6 @@ rm *.blg
 mv $1.pdf ../results/
 
 else #if the argument provided is not equal to one the script will return this output
-echo "Please input FirstExample as an argument, other input will definitely break this script."
+echo "Please input FirstExample or other .tex file as an argument, other input will definitely break this script."
 fi
 exit
