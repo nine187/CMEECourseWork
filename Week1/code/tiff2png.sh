@@ -2,6 +2,7 @@
 # Author: Pasith Prayoonrat pp1922@ic.ac.uk
 # Script: tiff2png.sh
 # Description: convert .tiff file to png
+# Arguments: 1 -> .tiff file
 
 # Date: Oct 2022
 
