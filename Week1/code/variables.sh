@@ -7,7 +7,7 @@
 # Date: Oct 2022
 ## Illustrates the use of variables 
 
-# Special variables
+# Special variables- how variables are assigned in the script
 
 echo "This script was called with $# parameters"
 echo "The script's name is $0"

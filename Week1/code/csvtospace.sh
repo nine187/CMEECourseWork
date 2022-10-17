@@ -15,7 +15,7 @@ elif [ $# -eq 1 ]; then #if the amount of arguments inputted is one the script w
     echo "Creating a delimited version of $1 ..."
     cat $1 | tr -s "," " " >> $1.txt
     echo "Moving $1 file to results"
-    mv $1.txt ~/Documents/CMEECourseWork/Week1/results/
+    mv $1.txt ../results/
     echo "Done!"
     exit
 

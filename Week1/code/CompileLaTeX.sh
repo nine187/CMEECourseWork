@@ -17,13 +17,14 @@ pdflatex $1 #somehow when I input the file with a .tex extension (FirstExample.t
 bibtex $1
 pdflatex $1
 pdflatex $1
-evince $1.pdf &
+evince $1.pdf
 echo "Cleaning up..."
 ## Cleanup
 rm *.aux
 rm *.log
 rm *.bbl
 rm *.blg
+mv $1.pdf ../results/
 
 else #if the argument provided is not equal to one the script will return this output
 echo "Please input FirstExample as an argument, other input will definitely break this script."

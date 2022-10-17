@@ -20,7 +20,7 @@ elif [ $# -eq 1 ]; then #if the input file is equal to 1 then the script will re
     echo "Creating a comma delimited version of $1 ..."
     cat $1 | tr -s "\t" "," >> $1.csv
     echo "Moving $1.csv to results directory"
-    mv $1 ~/Documents/CMEECourseWork/Week1/results/
+    mv $1 ../results/
     echo "Done!"
     exit
 fi

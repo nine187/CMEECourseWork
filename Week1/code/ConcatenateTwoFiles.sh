@@ -16,7 +16,7 @@ if [ $# -eq 2 ]; then #if the number of arguments is equal to 2 then the file wi
     cat $2 >> $outputname
     echo "Merged File is $outputname"
     echo "Moving $outputname file to results"
-    mv $outputname ~/Documents/CMEECourseWork/Week1/results/
+    mv $outputname ../results/
     echo "Done!"
 
 else #if more than 2 or less than 2 arguments are provided the script will ask the user to input the correct amount of files
