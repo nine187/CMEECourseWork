@@ -1,7 +1,7 @@
 #!/binsh
 #Author: Pasith Prayoonrat pp1922@ic.ac.uk
 # Script: MyExampleScript.sh
-#Desc: My Example script
+#Description: My Example script
 
 #Arguments: none
 #Date: Oct 2022
