@@ -7,7 +7,7 @@
 # Date: Oct 2022
 
 if [ $# -eq 0 ]; then #if the amount of arguments inputted is zero the script will print out the message below and exit
-    echo "NO FILES ARE INPUTTED! Please input a file."
+    echo "NO FILES DETECTED! Please input a file."
     exit
 
 else #standard countline code from the course will run if any argument is provided

@@ -1,4 +1,4 @@
-#1 cd back to the fasta file (that will be the default directory for the codes below) and use wordcount -l to count the lines
+#1 cd back to the fasta file (this will be the default directory for all the codes below) and use wordcount -l to count the lines
 
 cd ../data/fasta; wc -l 407228326.fasta 407228412.fasta E.coli.fasta 
 

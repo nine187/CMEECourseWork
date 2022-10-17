@@ -8,7 +8,7 @@
 # Date: Oct 2022
 
 if [ $# -eq 0 ]; then #if the amount of arguments inputted is zero the script will print out the message below and exit
-    echo "NO FILES ARE INPUTTED! Please input a .csv file" >&2
+    echo "NO FILE DETECTED! Please input a .csv file" >&2
     exit
 
 elif [ $# -eq 1 ]; then #if the amount of arguments inputted is one the script will print out the message below and exit and move the file in the /results folder
