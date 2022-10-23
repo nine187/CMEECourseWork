@@ -10,19 +10,20 @@ import csv #import csv
 import sys
 import doctest
 
-""""Debugger Practical for Python"""
-
-__author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
-__version__ = '0.0.1'
-
 #Define function
 #import ipdb; ipdb.set_trace()
 def is_an_oak(name):
     """ Returns True if name is starts with 'quercus'
-    >>> is_an_oak('Quercus robur') 
-    'True'
     >>> is_an_oak('Fagus sylvatica')
-    'False'
+    False
+    >>> is_an_oak('Quercus robur') 
+    True
+    >>> is_an_oak('quercus robur')
+    True
+    >>> is_an_osk('quercuss robur')
+    True
+    >>> is_an_oak('quercuss robur')
+    True
     """
     return name.lower().startswith('quercus')
 doctest.testmod()

@@ -34,11 +34,16 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
 
 #solution
 
-taxa_dic = dict()
-genus_set = set([x[1] for x in taxa])
-for x in genus_set:
-        taxa_dic[x] = set([y[0] for y in taxa if y[1] == x])
+#create taxa _dic as a dictionary
+taxa_dic = dict() 
+#create the genus set key as a set of genus names from the second variables in the taxa list
+genus_set = set([x[1] for x in taxa]) 
+#for every item in the genus_set
+for x in genus_set: 
+        # set a new variable (y) as the value for the first element of the taxa list if the second element is match with the genus_set name to avoid duplication/overwriting
+        taxa_dic[x] = set([y[0] for y in taxa if y[1] == x]) 
 
+#beautiful
 from pprint import pprint
 pprint(taxa_dic)
 
@@ -47,7 +52,9 @@ pprint(taxa_dic)
 
 #### Your solution here #### 
 
-taxa_dic_lc = {x[1]:[y[0] for y in taxa if y[1] == x[1]] for x in taxa} #
+#create a new list comprehension, set the key as  the second variable in the taxa list and the value as the first variable in the taxa list
+taxa_dic_lc = {x[1]:[y[0] for y in taxa if y[1] == x[1]] for x in taxa} 
+#if the key in the first list matches the genus on the list, it will be assign as a value for that key
 
 from pprint import pprint
 pprint(taxa_dic_lc)

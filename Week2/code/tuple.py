@@ -16,8 +16,10 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # Birds is a tuple of tuples of length three: latin name, common name, mass.
 # write a (short) script to print these on a separate line or output block by
 # species 
+ # for the first item, secon item and third item in the nested tuple 
 for x,y,z in birds:
-    print("Latin_name: " + str(x) + "\n"  +  "Common_name: " + str(y) + "\n" + "Mass: " + str(z) )
+    #print \n to seperate by line break
+    print("Latin_name: " + str(x) + "\n"  +  "Common_name: " + str(y) + "\n" + "Mass: " + str(z) ) 
 
 # A nice example output is:
 # 

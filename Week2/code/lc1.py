@@ -19,32 +19,42 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # each species in birds, respectively. 
 
 Latin_names = [x[0] for x in birds] #takes the first element from the birds list and seperate it into a new list called Latin_names
-print(Latin_names)
+from pprint import pprint #beautiful !
+pprint(Latin_names)
 
 Common_names = [x[1] for x in birds]
-print(Common_names)
+pprint(Common_names)
 
 Body_masses = [x[2] for x in birds]
-print(Body_masses)
+pprint(Body_masses)
 
 # (2) Now do the same using conventional loops (you can choose to do this 
 # before 1 !). 
 
+#creates a blank set to insert the output in
 Loop_one = []
-for i in birds:
-    Loop_one.append(i[0])
-print(Loop_one)
+#for every item in birds
+for x in birds: 
+#append all the first variable in each of the nested tuple (the latin name)
+    Loop_one.append(x[0]) 
+#print it
+pprint(Loop_one) 
 
+#creates a blank set to insert the output in
+Loop_two = [] 
+# for every item in birds
+for x in birds: 
+    # append all the second variables in each of the nested tuple (common name)
+    Loop_two.append(x[1]) 
+pprint(Loop_two)
 
-Loop_two = []
-for i in birds:
-    Loop_two.append(i[1])
-print(Loop_two)
-
-Loop_three=[]
-for i in birds:
-    Loop_three.append(i[2])
-print(Loop_three)
+#creates a blank set to insert the output in
+Loop_three=[] 
+# for every item in bird
+for x in birds: 
+    #append all the third variables in each of the nested tuple (bodymass)
+    Loop_three.append(x[2]) 
+pprint(Loop_three)
 
 
 # A nice example out out is:

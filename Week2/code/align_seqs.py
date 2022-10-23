@@ -11,8 +11,10 @@ import csv #use to read csv file
 import sys #import the system
 
 #ipdb.set_trace() #the breakpoint
-DNAs_open = open('../data/DNAs.csv', 'r') #open the csv file
-read_csv = csv.reader(DNAs_open) #read the .csv DNA file
+#open the csv file
+DNAs_open = open('../data/DNAs.csv', 'r') 
+#read the .csv DNA file
+read_csv = csv.reader(DNAs_open) 
 DNA = []
 for row in read_csv:
     DNA.append(row[0])
@@ -73,7 +75,9 @@ for i in range(l1): # Note that you just take the last alignment with the highes
         my_best_score = z 
 print(my_best_align)
 print(s1)
-print("Best score:", my_best_score)
-sys.stdout = open ('../results/align_seq_result.txt', 'w')
+print("Best score:", my_best_score) 
+#use text file in result as an output
+sys.stdout = open ('../results/align_seq_result.txt', 'w') 
 print ("The best alignment is: " + str(my_best_align) + "." "The best score is: " + str(my_best_score) + ".")
-sys.stdout.close()
+#confirmation to close
+sys.stdout.close() 

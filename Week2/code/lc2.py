@@ -27,25 +27,35 @@ rainfall = (('JAN',111.4),
 # (1) Use a list comprehension to create a list of month,rainfall tuples where
 # the amount of rain was greater than 100 mm.
 
-Over_100 = [x for x in rainfall if (x[1] > 100)]
-print(Over_100)
+# for every item in rainfall set if the second element is over 100 it will be in this list comprehension
+Over_100 = [i for i in rainfall if (i[1] > 100)] 
+from pprint import pprint #beautiful
+print(Over_100) 
 
 # (2) Use a list comprehension to create a list of just month names where the
 # amount of rain was less than 50 mm. 
 
-Below_50 = [x for x in rainfall if (x[1] < 50)] 
-next(zip(*Below_50))
+#for every item in rainfall set if the second element that is under 50, it will be in this list comprehension
+Below_50 = [i for i in rainfall if (i[1] < 50)] 
+# next to return the next item from the iterator, zip to take the first element in below 50 and * to take all the element
+next(zip(*Below_50)) 
 
 # (3) Now do (1) and (2) using conventional loops (you can choose to do 
 # this before 1 and 2 !). 
 
-task3_1 = []
+#create empty sets
+task3_1 = [] 
 task3_2 = []
-for i in rainfall:
-    if i[1] > 100:
-        task3_1.append(i)
+# for every number in rainfall set
+for i in rainfall: 
+    #if second variable(rain) is more than 100
+    if i[1] > 100: 
+        #append all the those number (and coressponding months toos)
+        task3_1.append(i) 
+    #else if second variable is less than 50
     elif i[1] < 50:
-        task3_2.append(i[0])
+        # append all those number but only the first element (month name)
+        task3_2.append(i[0]) 
 
 print(task3_1)
 print(task3_2)
