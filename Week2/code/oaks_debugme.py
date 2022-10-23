@@ -6,7 +6,7 @@
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 
-import csv
+import csv #import csv
 import sys
 import doctest
 
