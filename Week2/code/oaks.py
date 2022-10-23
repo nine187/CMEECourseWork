@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+
+
+"""Functions designed to determine whether a species is an oak."""
+
+__author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
+__version__ = '0.0.1'
+
 ## Finds just those taxa that are oak trees from a list of species
 
 taxa = [ 'Quercus robur',

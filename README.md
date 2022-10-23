@@ -13,4 +13,4 @@ This is the repository of the work attempted by Pasith Prayoonrat on the "Multil
 
 ## Table of Contents
 1. Week 1: UNIX and Linux, shell scripting, git and Latex
-
+2. Week 2: Python

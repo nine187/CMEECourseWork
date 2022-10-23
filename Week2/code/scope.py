@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+
+
+"""A scirpt containing a function that determine a variable within a scope."""
+
+__author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
+__version__ = '0.0.1'
+
 i = 1
 x = 0
 for i in range(10):

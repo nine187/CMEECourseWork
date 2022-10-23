@@ -1,30 +1,43 @@
+#!/usr/bin/env python3
+
+
+"""This script is designed to align DNA sequences to the closest possible match"""
+
+__author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
+__version__ = '0.0.1'
+
+import ipdb #debugger
+import csv #use to read csv file
+import sys #import the system
+
+#ipdb.set_trace() #the breakpoint
+DNAs_open = open('../data/DNAs.csv', 'r') #open the csv file
+read_csv = csv.reader(DNAs_open) #read the .csv DNA file
+DNA = []
+for row in read_csv:
+    DNA.append(row[0])
+
+DNA_1 = str(DNA[1])
+DNA_2 = str(DNA[0])
+
 # Two example sequences to match
-seq2 = "ATCGCCGGATTACGGG"
-seq1 = "CAATTCGGAT"
 
 # Assign the longer sequence s1, and the shorter to s2
-
-seq2 = s1
-seq1 = s2
-
 # l1 is length of the longest, l2 that of the shortest
 
-s1 = l1
-s2 = l2
-
-l1 = len(seq1)
-l2 = len(seq2)
-if l1 >= l2:
-    s1 = seq1
-    s2 = seq2
-else:
-    s1 = seq2
-    s2 = seq1
-    l1, l2 = l2, l1 # swap the two lengths
+l1 = len(DNA_2)
+l2 = len(DNA_1)
+if l1 >= l2: # if seq1 length is longer than seq2
+    s1 = DNA_2 #define s1 as seq1
+    s2 = DNA_1 #define s2 as seq2
+else:# if seq2 length is shorter than seq1, s1 will always be the longer sequence
+    s1 = DNA_1 
+    s2 = DNA_2 
+    l1, l2 = l2, l1 # swap the two lengths 
 
 # A function that computes a score by returning the number of matches starting
 # from arbitrary startpoint (chosen by user)
-def calculate_score(s1, s2, l1, l2, startpoint):
+def calculate_score(s1, s2, l1, l2, startpoint): 
     matched = "" # to hold string displaying alignements
     score = 0
     for i in range(l2):
@@ -45,7 +58,7 @@ def calculate_score(s1, s2, l1, l2, startpoint):
     return score
 
 # Test the function with some example starting points:
-# calculate_score(s1, s2, l1, l2, 0)
+# ca lculate_score(s1, s2, l1, l2, 0)
 # calculate_score(s1, s2, l1, l2, 1)
 # calculate_score(s1, s2, l1, l2, 5)
 
@@ -61,3 +74,6 @@ for i in range(l1): # Note that you just take the last alignment with the highes
 print(my_best_align)
 print(s1)
 print("Best score:", my_best_score)
+sys.stdout = open ('../results/align_seq_result.txt', 'w')
+print ("The best alignment is: " + str(my_best_align) + "." "The best score is: " + str(my_best_score) + ".")
+sys.stdout.close()

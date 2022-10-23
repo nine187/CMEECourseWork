@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+
+
+"""A script containing loop examples."""
+
+__author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
+__version__ = '0.0.1'
+
 # FOR loops
 for i in range(5):
     print(i)

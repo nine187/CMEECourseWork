@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+
 """First Practical for Python"""
+
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 
@@ -16,27 +18,37 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # lists containing the latin names, common names and mean body masses for
 # each species in birds, respectively. 
 
-Latin_names = ('Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor')
+Latin_names = [x[0] for x in birds] #takes the first element from the birds list and seperate it into a new list called Latin_names
+print(Latin_names)
 
-Common_names = ('Savannah sparrow', 'House martin', 'Yellow-eyed junco', 'Dark-eyed junco', 'Tree swallow')
+Common_names = [x[1] for x in birds]
+print(Common_names)
 
-Body_masses = ('18.7', '19', '19.5', '19.6', '20.2')
+Body_masses = [x[2] for x in birds]
+print(Body_masses)
 
 # (2) Now do the same using conventional loops (you can choose to do this 
 # before 1 !). 
 
-for x in Latin_names:
-    print(x)
+Loop_one = []
+for i in birds:
+    Loop_one.append(i[0])
+print(Loop_one)
 
-for x in Common_names:
-    print(x)
 
-for x in Body_masses:
-    print(x)
+Loop_two = []
+for i in birds:
+    Loop_two.append(i[1])
+print(Loop_two)
+
+Loop_three=[]
+for i in birds:
+    Loop_three.append(i[2])
+print(Loop_three)
+
 
 # A nice example out out is:
 # Step #1:
 # Latin names:
 # ['Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor']
 # ... etc.
- 

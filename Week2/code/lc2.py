@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+"""Second practical for Python"""
+
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 
@@ -25,12 +27,14 @@ rainfall = (('JAN',111.4),
 # (1) Use a list comprehension to create a list of month,rainfall tuples where
 # the amount of rain was greater than 100 mm.
 
-Rainfall_over100mm = [('JAN', 111.3), ('FEB', 126.1), ('AUG', 140.2), ('NOV', 128.4), ('DEC', 142.2)]
+Over_100 = [x for x in rainfall if (x[1] > 100)]
+print(Over_100)
 
 # (2) Use a list comprehension to create a list of just month names where the
 # amount of rain was less than 50 mm. 
 
-Rainfall_below50mm = [('MAR', 49.9),('SEP', 27.0), ('OCT', 89.4)]
+Below_50 = [x for x in rainfall if (x[1] < 50)] 
+next(zip(*Below_50))
 
 # (3) Now do (1) and (2) using conventional loops (you can choose to do 
 # this before 1 and 2 !). 
@@ -41,11 +45,9 @@ for i in rainfall:
     if i[1] > 100:
         task3_1.append(i)
     elif i[1] < 50:
-        task3_2.append(i)
+        task3_2.append(i[0])
 
-print("Task 3_1")
 print(task3_1)
-print("Task3_2")
 print(task3_2)
 
 # A good example output is:
@@ -54,4 +56,3 @@ print(task3_2)
 # Months and rainfall values when the amount of rain was greater than 100mm:
 # [('JAN', 111.4), ('FEB', 126.1), ('AUG', 140.2), ('NOV', 128.4), ('DEC', 142.2)]
 # ... etc.
-

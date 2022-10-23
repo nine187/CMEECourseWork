@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+"""Boilerplate for Python"""    
+
 """Description of this program or application.
 You can use several lines"""
 
