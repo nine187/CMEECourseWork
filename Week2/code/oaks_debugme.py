@@ -14,15 +14,13 @@ import doctest
 #import ipdb; ipdb.set_trace()
 def is_an_oak(name):
     """ Returns True if name is starts with 'quercus'
-    >>> is_an_oak('Fagus sylvatica')
+    >>> is_an_oak('Fagus sylvatica') #wrong name
     False
-    >>> is_an_oak('Quercus robur') 
+    >>> is_an_oak('Quercus robur') #Capital letter
     True
-    >>> is_an_oak('quercus robur')
+    >>> is_an_oak('quercus robur') #correct !
     True
-    >>> is_an_osk('quercuss robur')
-    True
-    >>> is_an_oak('quercuss robur')
+    >>> is_an_oak('quercuss robur') #typo 
     True
     """
     return name.lower().startswith('quercus')
