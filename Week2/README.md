@@ -8,10 +8,10 @@ This directory contains the scripts, data, and results from week 2. <br /> This 
 
 ## Directory Structure:
 
-*codes: This directory contains all the relevant codes in week 1.*<br />
+*codes: This directory contains all the relevant codes in week 2.*<br />
 *data: Contains files holding data that could be use in the relevant script.*<br />
 *sandbox: This is my playground.*<br />
-*results: Contains relevant output of the codes written in week 1.*<br />
+*results: Contains relevant output of the codes written in week 2.*<br />
 
 ### In Code you shall find:
  
