@@ -1,3 +1,9 @@
+# Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+# Script: apply1.R
+# Desc: How to use apply to vector
+# Arguments: none
+# Date: Oct 2022
+
 ## Build a random matrix
 M <- matrix(rnorm(100), 10, 10)
 
