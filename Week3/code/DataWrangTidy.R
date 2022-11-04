@@ -26,6 +26,7 @@ fix(MyMetaData)
 
 ############# Transpose ###############
 # To get those species into columns and treatments into rows 
+#tibble
 MyDataT = as_tibble(Mydata)
 head(MyData)
 dim(MyData)

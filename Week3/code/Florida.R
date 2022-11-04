@@ -15,8 +15,7 @@ head(ats)
 
 plot(ats)
 
-#using the cor function to find the correlation coefficient b/w the year and temp
-#with pearson method
+#using the cor function to find the correlation coefficient b/w the year and temp with pearson method
 cor_1 <- cor(ats$Year, ats$Temp, method = "pearson") 
 cor_1
 
@@ -24,8 +23,7 @@ cor_1
 cor_p <- data.frame(matrix(unlist(replicate(1000, {
   #shuffle the temperature data, without replacing the data
   temp_shuffle <- sample(ats$Temp, replace = F)
-  #use cor function to find correlation of year with the new shuffled data
-  #with pearson method
+  #use cor function to find correlation of year with the new shuffled data with pearson method
   cor(ats$Year, temp_shuffle, method = c("pearson"))
 }))))
 #print all 1000 shuffled temp and year correlation
@@ -40,7 +38,7 @@ avg_p_value <- (sum(cor_p$matrix.unlist.replicate.1000... > cor_1))/1000
 #correlation coefficient
 avg_p_value
 
-#visualization
+#visualization with ggplot to visualize the permutation test with a histogram
 library(ggplot2)
 diagram <- ggplot()+
   geom_histogram(data = cor_p,aes(matrix.unlist.replicate.1000...), fill = "blue", size = 1, bins=30)+

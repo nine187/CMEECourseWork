@@ -1,11 +1,18 @@
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: PP_Dists.R
+#Created: Oct 2022
+#Desc: Practical on mass ditribution
+
 require(ggplot2)
 require(dplyr)
+
+#clear the list
 rm(list = ls())
 
-
+#read the data
 DF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
 
-##gg plot
+# use ggplot to create the plots seperating the data by types of feeding
 DF <- ggplot(DF, aes(x = Prey.mass, y = Predator.mass, colour = Predator.lifestage, extends(maybe = TRUE)))+
   geom_point(shape = 3)+
   facet_grid(rows = vars(Type.of.feeding.interaction))+
@@ -16,8 +23,7 @@ DF <- ggplot(DF, aes(x = Prey.mass, y = Predator.mass, colour = Predator.lifesta
   scale_y_continuous(trans = 'log10')+
   scale_x_continuous(trans = 'log10')+
  
-
-
+#output the plot to a new pdf
 pdf("../results/PP_Regress_Results.pdf")
 print(DF)
 dev.off()

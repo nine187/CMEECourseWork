@@ -11,12 +11,13 @@ library(tidyverse)
 DF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
 dplyr::glimpse(DF)
 
+#assign the data with log, ratio and log ratio
 log_pd_mass = log(DF$Predator.mass)
 log_py_mass = log(DF$Prey.mass)
 py_pd_rat = (DF$Prey.mass/DF$Predator.mass)
 log_rat = log(py_pd_rat)
 
-
+#extract the df into a new one
 DF2 = data.frame(DF$Type.of.feeding.interaction, log_pd_mass,log_py_mass, log_rat, py_pd_rat)
 
 #convert mg to g
@@ -26,9 +27,9 @@ for (i in 1:nrow(DF)){
     DF$Prey.mass[i] = DF$Prey.mass[i] / 1000
   }
 }
+#use gg plot to plot histogram of different feeding type's predator mass and density
 
 #figure 1: Predator Subplot
-#add description and explaination later
 pd_ins <- ggplot(data = subset(DF, Type.of.feeding.interaction == "insectivorous"))+
   geom_histogram(aes(log(Predator.mass)), color="blue", size = 5, bins=30)+
   xlab("log of predator mass")+
@@ -170,11 +171,15 @@ dev.off()
 
 #calculate the log of mean,median,feeding types, other variables into a csv file
 PP_csv1 = names(table(DF2$DF.Type.of.feeding.interaction))
+
+#create a subset of each different types of feeding
 ins = subset(DF2,DF2$DF.Type.of.feeding.interaction == "insectivorous")
 pis = subset(DF2, DF2$DF.Type.of.feeding.interaction == "piscivorous")
 pla = subset(DF2, DF2$DF.Type.of.feeding.interaction == "planktivorous")
 pre = subset(DF2,DF2$DF.Type.of.feeding.interaction == "predacious")
 pre_pis = subset(DF2,DF2$DF.Type.of.feeding.interaction == "predacious/piscivorous")
+
+#find the means and medians of preys and predators for different feeding types and the ratio
 log_py_means = c(mean(ins$log_py_mass), mean(pis$log_py_mass), mean(pla$log_py_mass), mean(pre$log_py_mass), mean(pre_pis$log_py_mass))
 log_py_medians = c(median(ins$log_py_mass), median(pis$log_py_mass), median(pla$log_py_mass), median(pre$log_py_mass), median(pre_pis$log_py_mass))
 log_pd_means = c(mean(ins$log_pd_mass), mean(pis$log_pd_mass), mean(pla$log_pd_mass), mean(pre$log_pd_mass), mean(pre_pis$log_pd_mass))
@@ -182,6 +187,8 @@ log_pd_medians = c(median(ins$log_pd_mass), median(pis$log_pd_mass), median(pla$
 log_rat_means = c(mean(ins$log_rat), mean(pis$log_rat),mean(pla$log_rat),mean(pre$log_rat), mean(pre_pis$log_rat))
 log_rat_medians = c(median(ins$log_rat), median(pis$log_rat),median(pla$log_rat),median(pre$log_rat), median(pre_pis$log_rat))
 
+#input the data into the data frame we created
 PP_res = data.frame(type = PP_csv1, log_py_means, log_py_medians, log_pd_means, log_pd_medians, log_rat_means, log_rat_medians)
-write.csv(PP_res, "../results/PP_Results.csv")
 
+#output to csv
+write.csv(PP_res, "../results/PP_Results.csv")
