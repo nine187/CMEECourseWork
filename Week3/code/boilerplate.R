@@ -1,4 +1,8 @@
-# A boilerplate R script
+# Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+# Script: boilerplate.R
+# Desc: A boilerplate R script
+# Arguments: none
+# Date: Oct 2022
 
 MyFunction <- function(Arg1, Arg2) {
 

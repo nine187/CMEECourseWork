@@ -1,3 +1,9 @@
+# Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+# Script: DataWrangTidy.R
+# Desc: Data wrangling example using tidyverse
+# Arguments: PounHillData.csv
+# Date: Oct 2022
+
 ################################################################
 ################## Wrangling the Pound Hill Dataset ############
 ################################################################

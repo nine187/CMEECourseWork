@@ -1,5 +1,8 @@
-#A simple script to illustrate R input-output
-#Run line byline and check inputs outputs to understand what is happening
+# Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+# Script: basic_io.R
+# Desc: R input and output examples
+# Arguments: none
+# Date: Oct 2022
 
 MyData <- read.csv("../data/trees.csv", header = TRUE) #import with headers
 write.csv(MyData, "../results/MyData.csv") #write it out as a new file

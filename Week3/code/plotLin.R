@@ -1,3 +1,9 @@
+# Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+# Script: plotLin.R
+# Desc: example of how to creat a linear regression plot
+# Arguments: none
+# Date: Oct 2022
+
 x <- seq(0, 100, by = 0.1)
 y <- -4. + 0.25 * x +
   rnorm(length(x), mean = 0., sd = 2.5)

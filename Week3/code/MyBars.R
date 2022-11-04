@@ -1,3 +1,8 @@
+# Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+# Script: MyBars.R
+# Desc: ggplot examples for bars
+# Date: Oct 2022
+
 a <- read.table("../data/results.txt", header = TRUE)
 
 head(a)

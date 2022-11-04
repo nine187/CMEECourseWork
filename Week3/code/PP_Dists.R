@@ -1,7 +1,7 @@
 #Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
 #Script: PP_Dists.R
 #Created: Oct 2022
-#Desc:
+#Desc: Practical on mass ditribution
 
 rm(list = ls())
 library(ggplot2)

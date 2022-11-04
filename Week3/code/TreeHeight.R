@@ -1,3 +1,8 @@
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: TreeHeight.R
+#Created: Oct 2022
+#Desc: Practical on tree height
+
 # This function calculates heights of trees given distance of each tree
 # from its base and angle to its top, using the trigonometric formula
 #

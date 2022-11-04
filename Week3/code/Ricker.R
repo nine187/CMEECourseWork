@@ -1,3 +1,8 @@
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: Ricker.R
+#Created: Oct 2022
+#Desc: Ricker model
+
 Ricker <- function(N0=1, r=1, K=10, generations=50)
 {
   # Runs a simulation of the Ricker model

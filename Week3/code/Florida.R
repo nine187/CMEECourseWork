@@ -1,3 +1,8 @@
+# Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+# Script: Florida.R
+# Desc: Practical question for Florida
+# Date: Oct 2022
+
 rm(list=ls())
 
 load("../data/KeyWestAnnualMeanTemperature.RData")

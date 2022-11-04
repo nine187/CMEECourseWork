@@ -1,3 +1,8 @@
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: Vectorize1.R
+#Created: Oct 2022
+#Desc: Vectorization example
+
 M <- matrix(runif(1000000),1000,1000)
 
 SumAllElements <- function(M) {

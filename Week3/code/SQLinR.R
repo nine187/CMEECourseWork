@@ -1,3 +1,8 @@
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: SQLinR.r
+#Created: Oct 2022
+#Desc: SQLite package database code
+
 #install the sqlite package
 install.packages('sqldf')
 

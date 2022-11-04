@@ -1,3 +1,8 @@
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: sample.R
+#Created: Oct 2022
+#Desc: sample vectorized and non-vectorized function
+
 ######### Functions ##########
 
 ## A function to take a sample of size n from a population "popn" and return its mean

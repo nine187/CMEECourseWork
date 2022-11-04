@@ -1,3 +1,10 @@
+# Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+# Script: DataWrang.R
+# Desc: Data wrangling example.
+# Arguments: PounHillData.csv
+# Date: Oct 2022
+
+
 ################################################################
 ################## Wrangling the Pound Hill Dataset ############
 ################################################################

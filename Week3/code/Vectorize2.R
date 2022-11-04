@@ -1,3 +1,8 @@
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: PP_Dists.R
+#Created: Oct 2022
+#Desc: Practical on vectorization
+
 # Runs the stochastic Ricker equation with gaussian fluctuations
 
 rm(list = ls())
