@@ -10,7 +10,6 @@ build_ellipse <- function(hradius, vradius){ # function that returns an ellipse
   y <- vradius * sin(a)  
   return(data.frame(x = x, y = y))
 }
-
 N <- 250 # Assign size of the matrix
 
 M <- matrix(rnorm(N * N), N, N) # Build the matrix
@@ -40,5 +39,5 @@ p <- p + geom_polygon(data = ellDF, aes(x = Real, y = Imaginary, alpha = 1/20, f
 p
 
 pdf("../results/Girko.pdf")
-p
+print(p)
 dev.off()
