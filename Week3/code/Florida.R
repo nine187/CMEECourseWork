@@ -13,7 +13,7 @@ class(ats)
 
 head(ats)
 
-plot(ats)
+#plot(ats)
 
 #using the cor function to find the correlation coefficient b/w the year and temp with pearson method
 cor_1 <- cor(ats$Year, ats$Temp, method = "pearson") 
@@ -45,7 +45,6 @@ diagram <- ggplot()+
   xlab("Correlation Coefficient")+
   ylab("Frequency")
 
-pdf("../results/Florida_diagram.pdf")
+pdf("../sandbox/Florida_diagram.pdf")
 print(diagram)
 dev.off()
-

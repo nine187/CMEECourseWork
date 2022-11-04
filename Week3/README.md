@@ -30,6 +30,7 @@ This directory contains the scripts, data, and results from week 3. <br /> This 
  Florida.tex | Latex file for Florida task.
  Girko.R | Girko Law script using R.
  GPDD_Data.R | Practical for map package.
+ try.R | Function use to catch error.
  MyBars.R | ggplot example for bars
  next.RR | example of how to use next in loop
  plotLin.R | how to create linear regression plot.
@@ -37,6 +38,7 @@ This directory contains the scripts, data, and results from week 3. <br /> This 
  PP_Regress.R | Practical on regression
  preallocate.R | Example of preallocation
  Ricker.R | Ricker model code
+ R_conditionals.R | Examples of writing conditions in R.
  sample.R | sample of vectorized and non-vectorized code
  SQLinR.R | SQLite package
  TreeHeight.R | Practical on Treeheight
