@@ -42,10 +42,17 @@ Navigate to the code directory in the command line. Bash execute the [**compile_
 Scripts:
 
 [**compile_all.sh**]: This script is run from the bash terminal and compiles the entire project from start to finish.
+
 [**data_prep.py**]: Data wrangling script to clean the data.
+
 [**model_fitting.R**]: Model fitting script to fit different models.
+
 [**functions.R**]: Script containing all the necessary functions applied throughout the script.
+
 [**analysis.R**]: Script uses to analyse the data after fitting the model.
+
 [**visualization.R**]: Script to produce diagrams and visualizations for the report.
+
 [**report.tex**]: Script containig the write-up.
+
 [**references.bib**]: Script containing the bibliography.
