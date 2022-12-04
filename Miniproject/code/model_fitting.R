@@ -1,3 +1,8 @@
+# Author: Pasith Prayoonrat
+# Script: model_fitting.R
+# Description: Model fitting script
+# Date: December 22
+
 #setwd("Documents/CMEECourseWork/Miniproject/code")
 rm(list=ls())
 graphics.off()

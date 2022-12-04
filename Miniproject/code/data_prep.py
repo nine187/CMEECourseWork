@@ -1,4 +1,9 @@
 #!/usr/bin/env python coding: utf-8
+# Author: Pasith Prayoonrat
+# Script: data_prep.py
+# Description: Data prep script
+# Date: December 22
+
 import pandas as pd
 import seaborn as sns
 

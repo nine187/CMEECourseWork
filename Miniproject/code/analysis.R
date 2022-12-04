@@ -1,3 +1,8 @@
+# Author: Pasith Prayoonrat
+# Script: analysis.R
+# Description: Data analyis script
+# Date: December 22
+
 rm(list=ls())
 source("functions.R")
 library(dplyr)

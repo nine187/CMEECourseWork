@@ -1,3 +1,7 @@
+# Author: Pasith Prayoonrat
+# Script: functions.py
+# Description: function script
+# Date: December 22
 ###########################model function######################
 
 # logistic model

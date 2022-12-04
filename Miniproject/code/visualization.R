@@ -1,3 +1,8 @@
+# Author: Pasith Prayoonrat
+# Script: visualization.py
+# Description: Data visualization script
+# Date: December 22
+
 rm(list=ls())
 library(ggplot2)
 library(gtable)
