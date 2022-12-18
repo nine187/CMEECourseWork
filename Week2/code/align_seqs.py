@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
-
-
 """This script is designed to align DNA sequences to the closest possible match"""
-
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 
-import ipdb #debugger
+#import ipdb #debugger
 import csv #use to read csv file
 import sys #import the system
 
 #ipdb.set_trace() #the breakpoint
 #open the csv file
 DNAs_open = open('../data/DNAs.csv', 'r') 
+
 #read the .csv DNA file
 read_csv = csv.reader(DNAs_open) 
 DNA = []
@@ -25,17 +23,17 @@ DNA_2 = str(DNA[0])
 # Two example sequences to match
 
 # Assign the longer sequence s1, and the shorter to s2
-# l1 is length of the longest, l2 that of the shortest
 
+#use len to find the length of both DNA
 l1 = len(DNA_2)
 l2 = len(DNA_1)
 if l1 >= l2: # if seq1 length is longer than seq2
-    s1 = DNA_2 #define s1 as seq1
-    s2 = DNA_1 #define s2 as seq2
+    s1 = DNA_2 
+    s2 = DNA_1 
 else:# if seq2 length is shorter than seq1, s1 will always be the longer sequence
     s1 = DNA_1 
     s2 = DNA_2 
-    l1, l2 = l2, l1 # swap the two lengths 
+    l1, l2 = l2, l1 # swap the two lengths
 
 # A function that computes a score by returning the number of matches starting
 # from arbitrary startpoint (chosen by user)
@@ -76,8 +74,10 @@ for i in range(l1): # Note that you just take the last alignment with the highes
 print(my_best_align)
 print(s1)
 print("Best score:", my_best_score) 
+
 #use text file in result as an output
 sys.stdout = open ('../results/align_seq_result.txt', 'w') 
 print ("The best alignment is: " + str(my_best_align) + "." "The best score is: " + str(my_best_score) + ".")
+
 #confirmation to close
 sys.stdout.close() 

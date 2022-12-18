@@ -4,27 +4,35 @@
 # Date: Oct 2022
 
 rm(list=ls())
-
+library(ggplot2)
 load("../data/KeyWestAnnualMeanTemperature.RData")
 
+#look at the data
 ls()
-
 class(ats)
-
 head(ats)
 
-#plot(ats)
+#plot the temp and year, using base R plot
+pdf("../sandbox/Florida_diagram2.pdf")
+plot(ats$Year,
+     ats$Temp, 
+     xlab = "Year",
+     ylab = "Temp (Celcius)",
+     type = "l",
+     col = "red")
+dev.off()
 
-#using the cor function to find the correlation coefficient b/w the year and temp with pearson method
-cor_1 <- cor(ats$Year, ats$Temp, method = "pearson") 
+#using the cor function to find the correlation coefficient b/w the year and temp with spearman method
+cor_1 <- cor(ats$Year, ats$Temp, method = "spearman") 
 cor_1
 
-# reshuffle temperature data 1000 times
+# reshuffle temperature data 1000 times, ensure same randomization
+set.seed(1000)
 cor_p <- data.frame(matrix(unlist(replicate(1000, {
   #shuffle the temperature data, without replacing the data
   temp_shuffle <- sample(ats$Temp, replace = F)
   #use cor function to find correlation of year with the new shuffled data with pearson method
-  cor(ats$Year, temp_shuffle, method = c("pearson"))
+  cor(ats$Year, temp_shuffle, method = c("spearman"))
 }))))
 #print all 1000 shuffled temp and year correlation
 cor_p
@@ -38,13 +46,11 @@ avg_p_value <- (sum(cor_p$matrix.unlist.replicate.1000... > cor_1))/1000
 #correlation coefficient
 avg_p_value
 
-#visualization with ggplot to visualize the permutation test with a histogram
-library(ggplot2)
+#visualization with ggplot the histogram of 1000 permutation tests
 diagram <- ggplot()+
   geom_histogram(data = cor_p,aes(matrix.unlist.replicate.1000...), fill = "blue", size = 1, bins=30)+
   xlab("Correlation Coefficient")+
   ylab("Frequency")
-
 pdf("../sandbox/Florida_diagram.pdf")
 print(diagram)
 dev.off()

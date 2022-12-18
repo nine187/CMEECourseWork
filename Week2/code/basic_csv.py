@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-
 """Basic script to read the species name from the testcsv.csv in data and write a file called bodymass.csv in the data folder. """
-
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 

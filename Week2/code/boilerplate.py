@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
-
 """Boilerplate for Python"""    
-
 """Description of this program or application.
 You can use several lines"""
-
 __appname__ = '[application name here]'
 __author__ = 'Your Name (your@email.address)'
 __version__ = '0.0.1'

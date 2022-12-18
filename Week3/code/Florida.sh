@@ -5,14 +5,19 @@
 # Argument: Florida
 # Date: Oct 2022
 
-pdflatex $1
-evince $1
+echo "Compiling LaTeX"
+pdflatex Florida.tex
+bibtex Florida.bib
+pdflatex Florida.tex
+pdflatex Florida.tex
+echo "Compiled LaTeX report"
 
-mv $1.pdf ../results/
 ## Cleanup
 rm *.aux
 rm *.log
 rm *.bbl
 rm *.blg
+rm *.fls
+rm *.fdb*
 
 #run by bash Florida.sh Florida

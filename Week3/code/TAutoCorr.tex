@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+
+\linespread{1.5}
+\title{Key West Temperature Autocorrelation}
+\author{Dashing Dingos}
+\date{Dec 2022}
+\begin{document}
+
+\section{Introduction}
+Global warming is caused by anthropogenic impacts such as burning fossil fuels and deforestation, leading to increased carbon emission and climate level \cite{houghton2005global}.
+Due to its geographic location, Florida have a high chance of facing the effects of climate change more severely than some other locations.
+By using a dataset of previous climate records in Florida, we examine whether there has been a significant change in the temperatures of Florida over the years.
+We examine one year's temperature and see if there is a significant correlation with the successive year's temperature.
+
+\section{Methods}
+We use the autocorrelation test with 10000 permutations to determine whether the correlation of the annual temperature difference is significant.
+Firstly, we calculated the significance of the year's correlation with their successive year using the spearman method.
+Then, we shuffled the dataset 10000 times and calculated the correlation coefficient each time.
+We used a p-test to see the fraction of tests that are higher than the original value that was not being shuffled to determine whether there is a correlation.
+
+\begin{figure}[H]
+    \begin{center}
+\centering
+\includegraphics[scale= 0.5]{../results/TAuto2.png}
+\caption{Correlation coefficient of 10000 permutation}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{center}
+\centering
+\includegraphics[scale= 0.5]{../results/TAuto1.png}
+\caption{Temperature and year temperature dataset plot}
+\end{center}
+\end{figure}
+
+\section{Results}
+The observed correlation of the successive year is 0.341, and the p-value of the permutation test is 0.0004. 
+The observed correlation of the successive year is significantly different from the distribution of the 10000 coefficient values being tested (Figure 1).
+
+
+\section{Discussion}
+The low p-value gathered could indicate that the pattern of climate changes observed occurs non-randomly.
+The climate pattern could suggest a rise in temperature in Florida during the twentieth century.
+The correlation result being non-random should be further looked into to determine whether the pattern is caused by climate change or other factors.
+
+\bibliographystyle{apalike}
+    \bibliography{TAutoCorr}
+\end{document}

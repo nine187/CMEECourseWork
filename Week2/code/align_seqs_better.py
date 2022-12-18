@@ -4,7 +4,7 @@ NAME
 align_seqs_fasta.py
 
 DESCRIPTION
-A script to find out the best match of two sequences.
+A script to find out all the equally-best alignments.
 
 FUNCTIONS
 inputs(seq1, seq2)
@@ -22,8 +22,10 @@ Chuxinyao Wang
 Sirui Ye (sy1122@ic.ac.uk)
 """
 
+
 #load packages
 import sys
+import pickle
 
 
 
@@ -112,17 +114,34 @@ def find_best_alignment(s1, s2, l1, l2):
     """
     my_best_align = None
     my_best_score = -1
+    best_score_collection = list()
+    best_align_collection = list()
 
-    for i in range(l1): # Note that you just take the last alignment with the highest score
+    # calculate score for each alignment
+    for i in range(l1): 
         z = calculate_score(s1, s2, l1, l2, i)
-        if z > my_best_score:
+        best_score_collection.append(z)
+    
+    # find out the best score
+    my_best_score  = max(best_score_collection)  
+
+    # find the best alignment
+    for i in range(l1):
+        if best_score_collection[i] == my_best_score:
             my_best_align = "." * i + s2 # "." indicates start point
-            my_best_score = z 
+            best_align_collection.append(my_best_align)
+            
+    best_results = dict()
+    best_results[my_best_score] = [best_align_collection]
 
     print("The highest score is:", my_best_score)
-    print("The best alignment is", my_best_align)
+    print("The best alignment is", best_align_collection)
+
+    with open('../results/align_seqs_better.pickle', 'wb') as f:
+        print ("======storing the result=====")
+        pickle.dump(best_results, f)
     
-    return my_best_align, my_best_score
+    return best_results
 
 
 def main(argv):
@@ -143,11 +162,14 @@ def main(argv):
     s1, s2, l1, l2 = inputs(input_file1, input_file2)
 
     # Run find_best_align to find best alignment of sequences
-    my_best_align, my_best_score = find_best_alignment(s1, s2, l1, l2)
+    best_results = find_best_alignment(s1, s2, l1, l2)
+    my_best_score = best_results.keys()
+    best_align_collection = best_results.values()
+
 
     # Output file
     with open("../results/align_seq_fasta.txt", "w") as f:
-         f.write("my_best_align" + my_best_align)
+         f.write("best_align_collection" + str(best_align_collection))
          f.write("\n")
          f.write("\nBest score: " + str(my_best_score))
          print("Your results can be found in the results directory!")
@@ -160,3 +182,5 @@ def main(argv):
 if (__name__ == "__main__"):
     status = main(sys.argv)
     sys.exit(status)
+
+

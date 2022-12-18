@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
-
 """First Practical for Python"""
-
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
-
-import sys 
 
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),
@@ -18,8 +14,9 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # lists containing the latin names, common names and mean body masses for
 # each species in birds, respectively. 
 
+from pprint import pprint #pprint for better visualization
+
 Latin_names = [x[0] for x in birds] #takes the first element from the birds list and seperate it into a new list called Latin_names
-from pprint import pprint #beautiful !
 pprint(Latin_names)
 
 Common_names = [x[1] for x in birds]

@@ -44,3 +44,11 @@ This directory contains the scripts, data, and results from week 3. <br /> This 
  TreeHeight.R | Practical on Treeheight
  Vectorize1.R | Example on vectorization
  Vectorize2.R | Practical on vectorizaion
+ TAutoCorr.bib | Bibliography on the groupwork writeup for TAutoCorr.R script
+ TAutoCorr.R | Script running the corrletion analysis of 10000 permutated sucessive year of temperature in Florida
+ TAutoCorr.tex | Script running the LaTeX file for the report on TAutorCorr.R
+ get_TreeHeights.R | Groupwork pracitical on treeheight script
+ get_TreeHeights.py | Python version of the groupwork practical treeheight scirpt
+ run_get_TreeHeight.sh | Groupwork shell script running get_TreeHeights script on python and R
+ PP_Regress_loc.R | Groupwork on mass distribution practical
+ run_Vectorize.sh | Groupwork shellscript on running the Vectorize scripts

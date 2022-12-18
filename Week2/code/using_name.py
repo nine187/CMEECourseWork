@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-
-
 """A script containing the use of a main module. """
-
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 

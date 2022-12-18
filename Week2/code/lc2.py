@@ -5,8 +5,6 @@
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 
-import sys #import the system
-
 # Average UK Rainfall (mm) for 1910 by month
 # http://www.metoffice.gov.uk/climate/uk/datasets
 
@@ -29,8 +27,9 @@ rainfall = (('JAN',111.4),
 
 # for every item in rainfall set if the second element is over 100 it will be in this list comprehension
 Over_100 = [i for i in rainfall if (i[1] > 100)] 
-from pprint import pprint #beautiful
-print(Over_100) 
+print("The answer to the first question is:")
+print(Over_100)
+print("\n")
 
 # (2) Use a list comprehension to create a list of just month names where the
 # amount of rain was less than 50 mm. 
@@ -38,7 +37,9 @@ print(Over_100)
 #for every item in rainfall set if the second element that is under 50, it will be in this list comprehension
 Below_50 = [i for i in rainfall if (i[1] < 50)] 
 # next to return the next item from the iterator, zip to take the first element in below 50 and * to take all the element
-next(zip(*Below_50)) 
+print("The answer to the second question is:")
+print(Below_50) 
+print("\n")
 
 # (3) Now do (1) and (2) using conventional loops (you can choose to do 
 # this before 1 and 2 !). 
@@ -55,8 +56,9 @@ for i in rainfall:
     #else if second variable is less than 50
     elif i[1] < 50:
         # append all those number but only the first element (month name)
-        task3_2.append(i[0]) 
+        task3_2.append(i) 
 
+print("The answer to the third question is:")
 print(task3_1)
 print(task3_2)
 

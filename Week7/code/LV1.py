@@ -5,7 +5,6 @@
 
 #import stuff
 import numpy as np
-import scipy as sc
 import scipy.integrate as integrate
 import matplotlib.pylab as p
 

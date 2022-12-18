@@ -39,3 +39,5 @@ This directory contains the scripts, data, and results from week 2. <br /> This 
  test_control_flow.py | A script showing the use of control statements in function.
  tuple.py | A python practical about how to print tuples into seperate lines.
  using_name.py | A script containing an example of the use of a main module.
+ align_seq_fasta.py | A groupwork script on aligning fasta to find the best sequence match
+ align_seq_better.py | A groupwork script to find out all the equally best alignment sequence
