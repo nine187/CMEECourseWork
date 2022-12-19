@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{{../sandbox/}}
+\usepackage{float}
+\graphicspath{ {../results/} }
+
+\title{Is Florida getting warmer?}
+
+\author{Pasith Prayoonrat (pp1922@ic.ac.uk)}
+
+\begin{document}
+  \maketitle
+
+\section{Introduction}
+Global warming is caused by anthropogenic impacts such as burning fossil fuels and deforestation, leading to increased carbon emission and climate level \cite{houghton2005global}.
+Due to its geographic location, Florida has a high chance of facing the effects of climate change more severely than some other locations.
+Using the correlation coefficient test which is a test that is used to find whether there is a statistically significant relationship between two different continuous variables.
+This report attempts to find a correlation between the annual temperature of Key West, Florida, across the years and determine whether there are any significant differences in changes in the temperature potentially from climate change.
+
+\section{Method}
+  I used the correlation coefficient test with the spearman method to test the correlation within the year and the temperature.
+  Then, I calculated the correlation cofficients of 1000 shuffled data with the spearman method and determine the p value of the data.
+
+\section{Results and Discussion}
+\subsection*{Diagram}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{../sandbox/Florida_diagram2.pdf}
+\caption{\label{fig:Florida_graph2} Temperature vs Year Graph in Key West Florida (1901-2000)}
+\end{figure}
+\subsection*{Diagram}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{../sandbox/Florida_diagram.pdf}
+\caption{\label{fig:Florida_graph} Correlation Coefficiency of Annual Temperature in Key West, Florida from 1901-2000}
+\end{figure}
+
+The correlation coefficient was calculated at 0.526 and the fraction of the random correlation coefficients that were greater than the observed one after 1000 random correlation coefficient that was calculated is 0.000 which indicate that the correlation is statistically significant.
+The result suggested that there could be a temporal factor that influence the annual temperature in Key West, Florida.
+However, futher investigion within the the temporal corelation should be investigated to further confirm or deny this finding.
+
+    \bibliographystyle{apalike}
+\bibliography{Florida.bib}
+    \end{document}

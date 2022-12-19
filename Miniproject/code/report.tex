@@ -1,0 +1,230 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{caption}
+
+\usepackage{float}
+\bibliographystyle{apalike}
+
+\linespread{1.5}
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		
+		\begin{Large}
+			\textbf{Gompertz Model Outperform\\
+       3 Mathematic Models in a\\
+       Bacterial Growth Dataset\\}
+		\end{Large}
+		
+		
+		\vspace{1.5cm}
+		
+		\textbf{Pasith Prayoonrat}
+		
+		\vfill
+		
+		Department of Life Sciences\\
+		Silwood Park\\
+		Imperial College London\\
+		Sunday 4th December 2022\\
+    \textit{Word Count: 2118}
+		\vspace{\baselineskip}
+		\vfill
+		
+	\end{center}
+\end{titlepage}
+%TC:endignore
+
+\newpage 
+
+  \section{Abstract}
+\noindent Model fitting is the process of determining which model best fits and explains a dataset. 
+  In this study, I compared four different mathematical models, mechanistic; Gompertz, logistic and phenomenological; cubic and quadratic polynomial models, to an empirical dataset of bacterial growth.
+  The comparison was to determine the best model that could fit 285 datasets of bacterial growth.
+  The dataset is first wrangled in \textit{python version 7.31.1} and processed through model fitting, data analysis, and data visualization in \textit{R version 4.1.2}.
+  The model best fitted in the dataset according to the lowest AIC, AIC\textsubscript{c}, and the BIC value is the Gompertz model, which managed to be the best fit for 120 models out of all 285 datasets.
+  Even though the Gompertz model outranked others in explaining the growth of the bacteria in this dataset, the sole model should not be used to fully describe the complexity of bacteria growth.
+  \pagebreak
+  \pagebreak
+  \section{Introduction}
+  \noindent  Model helps mathematically explain various processes and states in science; thus, selecting the right one is crucial.
+  By selecting an appropriate model, researchers can improve experimental design and better understand experimental results \cite{motulsky2004fitting}.
+  Moreover, selecting the suitable model is paramount in research areas where the collected data are often complex and messy such as ecology and evolution \cite{johnson2004model}.
+  In this study, two types of models are used: mechanistic and phenomenological models.
+  Mathematic models from both models were applied to the dataset of bacterial population growth to determine which model was the best among the selected ones.
+  \\
+  \\
+  One of the model types utilized in this report, the mechanistic model, is the type of model grounded in a theoretical basis.
+  It attempts to explain processes and mechanisms of patterns, and phenomena \cite{mhasoba_multilingual_2022}.
+  A classic example of a mechanistic model is logistic regression, which has been used in various applications.
+  In population growth, the mechanistic model has been used to explain the phenomenon; an example is the classic logistic model \cite{stefan2012mathematical}.
+  The initial parameters of these models can be used to explain the growth of the population within a system, notably a different approach to phenomenological models.
+  \\
+  \\
+  A phenomenological model describes the data's general shape; an example is a cubic and quadratic polynomial model.
+  There have been various models that attempt to explain the relationship between temperature and bacterial growth in a phenomenological sense,
+  these attempts often prove insightful in explaining the process on a sizeable descriptive scale \cite{heitzer1991utility}.
+  Moreover, models like the general sigmoid curve or the "S" shape curve have been used extensively to explain how bacteria proliferate through their different phases \cite{longhi2017microbial}. 
+  When appropriately refined, this model is ideal for explaining theoretical frameworks in various scientific fields, including ecology and evolution.
+  \\
+  \\
+  Both types of mathematical models described will be fitted, measured, and ranked to determine the quality of each statistical model amongst each other.
+  Mechanistic models are likely more successful in fitting the bacterial growth dataset as biological parameters within the model are more responsive to the dataset than phenomenological models, which are not.
+  Even though both mechanistic and phenomenological models have different approaches, it is essential to include both models within the dataset to increase our understanding of the individual model.
+  
+   \section{Methods}
+
+  \subsection*{Data}
+  I used the dataset of 10 published papers from a GitHub repository \cite{mhasoba_multilingual_2022}. 
+  Within this dataset, there are 285 different individual subsets of data points.
+  Each data point contains the following value: time, population amount, temperature, units of time measured, units of the population used, the medium used, and the authors. 
+
+  \subsection*{Mathematical models}
+  There are 4 mathematical models that I used in this study, all of which are written in \textit{R version 4.1.2} including 2 phenomenological models and 2 mechanistic models, which are as follows:  
+  \subsubsection*{Phenomenological Models}
+  \noindent Quadratic polynomial model
+
+    \begin{equation}
+        y = ax^{2} + bx + c
+    \end{equation}
+
+    \noindent Cubic polynomial model
+    
+    \begin{equation}
+        y = ax^{3} + bx^{2} + cx + d
+    \end{equation}
+
+  \subsubsection*{Mechanistic model}
+
+  \noindent Logistic (Verhulst) model \cite{peleg2011microbial}
+    \begin{equation}
+        N_t = \frac{N_0Ke^{rt}}{K + N_0(e^{rt} - 1)}
+    \end{equation}
+
+  \noindent Gompertz model \cite{zwietering1990modeling}
+    \begin{equation}
+        ln(N_t) = N_0 + (K - N_0)e^{-e^{re\frac{t_{lag} - t}{(K - N_0)\ln(10)} + 1}}
+    \end{equation}
+    For these equations, N\textsubscript{0} is the initial population size, and N\textsubscript{t} is the current population at the t period. While K is the population's carrying capacity and r\textsubscript{max} is the maximum growth rate. Finally, t\textsubscript{lag}, which is exclusive to the Gompertz model, is the last time point of the lag phase.
+  
+    \subsection*{Computational tool}
+  \subsubsection*{Data wrangling}
+  I used \textit{Ipython3 Version 7.31.1} alongside \textit{pandas version 1.4.4} and \textit{seaborn version 0.11.2} packages to wrangle and visualize the datasets.
+  I used \textit{pandas} to create unique IDs of each subset and \textit{seaborn} to initially visualize the datasets.
+  Additionally, I removed the negative and infinity values of population and temperature data to avoid problematic calculations.
+  Finally, I exported the wrangled data in a \textit{csv} file for model fitting.
+  
+  \subsubsection*{Model fitting}
+  To fit the non-linear least-square model (i.e., Gompertz and Logistic), I used the nlsLM function in \textit{minpack.lm version 1.2.2} package.
+  Furthermore, I randomly sampled 100 iterations of the starting value to determine the best possible value that fits both the Gompertz and the Logistic models.
+  Moreover, for the Gompertz model, I applied the logarithm function to the population data since the equation is in the natural logarithm form. 
+  For the linear model, I used the lm function in \textit{R} to fit the model.
+  Then, I calculated the Akaike Information Criterion (AIC) value (Equation 5) and the Bayesian Information Criterion (BIC) (Equation 6) values of all the models for each unique ID and stored them in a pre-allocated data frame.
+  Apart from these values, the intercept and slope of the phenomenological model values were extracted. The best initial values of the mechanistic model were also extracted and stored.
+
+  \begin{equation}
+    AIC = 2k -2ln(L(\hat  \theta))
+  \end{equation}
+
+  \begin{equation}
+    BIC = kln(n) - 2ln(L(\hat\theta))
+  \end{equation}
+
+  \noindent In the AIC (Equation 5), BIC (Equation 6), and AIC\textsubscript{c} (Equation 7) equations, \textit{k} is the number of estimated parameters, \begin{math} L(\hat \theta) \end{math} is the maximum value of the likelihood function, and \textit{ln} is the natural logarithm \cite{akaike1973information}.
+
+  \subsubsection*{Model Selection and Analysis}
+  \begin{equation}
+    AIC\textsubscript{c} = AIC + \frac{2k(k + 1)}{n - k - 1}
+  \end{equation}
+
+  \noindent The Second-order Akaike Information Criterion (AIC\textsubscript{c}) (Equation 7) values were calculated from the value of AIC obtained during model fitting.
+  I then compared the AIC, AIC\textsubscript{c}, and BIC values to find out which model best fits that individual subset and value.
+  The best-fitted model was then tallied to calculate the percentage of how many of each model best fit the overall dataset.
+  The BIC values were divided into different citation sources and calculated for the best models by selecting the lowest BIC value. 
+  \subsubsection*{Data visualization and report}
+  The diagrams of different values are visualized by \textit{ggplot version 3.4.0}, alongside \textit{viridis version 0.4.1} package for color visualization and \textit{gtable version 0.3.1, gridExtra version 2.3, gtable version 0.3.1, and grid 4.1.2} packages for combining the boxplots.
+  The report is written in \textit{TeX version 3.141592653}.
+
+  \subsubsection*{Original database and reproducibility}
+  The source code can be accessed at https://github.com/nine187/CMEECourseWork in the Miniproject directory, and the original database can be accessed at 
+  \newline https://github.com/mhasoba/TheMulQuaBio in the data directory which contains 2 files named \textit{LogisticGrowthData.csv} and \textit{LogisticGrowthMetaData.csv}. 
+
+  \section{Results}
+
+  \subsubsection*{Gompertz model outperformed other models}
+  
+  The results of the best-fitted models by the minimum value of AIC, AIC\textsubscript{c}, and BIC (Figure 1) all showed a similar trend in which the best-fitted model is the Gompertz model.
+  In the AIC\textsubscript{c} barplot, the amount of fitted models for logistic and cubic is almost identical at 24.91\% (n = 71) and 25.26\% (n = 72), respectively.
+  The ranking of the other 3 mathematical models from the Gompertz model is from the highest to the lowest: Logistic model, Cubic model, and Quadratic model.
+  Interestingly, the Gompertz model fitted the lowest amount of dataset at 74.39\% (n = 212) but is the model with the lowest AIC, AIC\textsubscript{c}, and BIC value at 42.11\% (n = 120).
+
+  \begin{figure}[H]
+    \begin{center}
+      \captionsetup{justification=centering}
+      \includegraphics[scale=0.5]{../results/All_barplot.png}
+      \caption{The overall best model based on the minimum value of AIC, AIC\textsubscript{c}, and BIC }
+    \end{center}
+    \end{figure}
+
+  \subsubsection*{Mechanistic and phenomenological models compared}
+
+  For the number of phenomenological models fitted, the quadratic polynomial model fitted in all the datasets (n = 285).
+  The cubic polynomial model fitted the data set at 97.19 \% (n = 277).
+  For the number of mechanistic models, I have found that the logistic model fitted in 93.68\% of the dataset (n = 267).
+  Furthermore, Gompertz model fitted in 74.39\% of the dataset (n = 212)
+
+  \subsubsection*{Best model based on minimum BIC values categorized by citation}
+  \begin{figure}[H]
+    \begin{center}
+      \captionsetup{justification=centering}
+      \includegraphics[scale=0.5]{../results/All_citebarplot.png}
+      \caption{The best overall model based on minimum BIC value categorized by citation}
+    \end{center}
+    \end{figure}
+
+    Here, I categorized the minimum BIC value of the selected model from the previous calculation (Diagram 1) into different citation sources. 
+    I found that the dataset has a high range; with \textit{Bae et al.} dataset containing 88 subsets while \textit{Zwietering et al.} dataset contained only 4 subsets.
+    Gompertz models outranked other models in 7 citation sources, while the logistic model outranked 2 citation sources and the cubic model outranked 1 citation source.
+    Interestingly, the Gompertz model is not the model with the minimum BIC value in any subset within the highest amount of subset citation sources (n = 88) (Diagram 2).
+
+
+    \section{Discussion}
+    By fitting the models to the data, we can better understand the mechanism by which bacteria grow at different temperatures.
+    Using computational tools and modern statistical analysis methods, we could rank different models that attempted to explain bacterial growth to be more knowledgeable about which model we should pick.
+    In this report, I tried to fit 4 different models to 285 datasets of bacteria growth and determine the best models that could explain the growth of these bacteria.
+    \\
+    \\
+    The trends of all the overall models based on the minimum AIC, AIC\textsubscript{c}, and BIC values are identical across all values.
+    Gompertz model outperformed other models fitting 42.1 \% of all the 285 subsets. 
+    Both mechanistic models outranked the phenomenological model, while the logistic model slightly outranked the cubic model in all 3 tested values of AIC, AIC\textsubscript{c}, and BIC.
+    For the citation grouped of BIC values, there is a clear favorability towards a specific model in each source, with the Gompertz model outranking other models in most cases. 
+    \\
+    \\
+    The clear favorability of the Gompertz model could indicate that the Gompertz model is the best model amongst all 4 models to describe bacterial growth, which might be due to the biological complexity of the parameter and the inclusion of the t\textsubscript{lag}, which accounts for bacterial growth behavior during the lagging phase.
+    However, due to the number of parameters, the model contains, it fitted the lowest amount of models at 74.39\% model after 100 iterations.
+    Previous study \cite{zwietering1990modeling}, which used t-test and F-test to determine the best model to explain bacterial growth curve, has also shown that the Gompertz model is better at explaining bacterial growth. The logistic model is often used as a viable model to explain growth rate. Despite this, it is often criticized for its use in describing growth\cite{kingsland1982refractory} as there are better models that can account for microbial growth than the logistic model.
+    In the citation grouped BIC values, there are trends of certain models outperforming others by a large margin indicating that the possible different variables such as temperature, medium, or units of the population could affect the favorability of specific models. 
+    \\
+    \\
+    It is important to note that this test did not account for the weak correlation within the values in which a difference of less than 2 could indicate an insignificant correlation \cite{mazerolle2006improving}.
+    Additionally, delta AIC\textsubscript{c} and Akaike Weight test could be performed to improve the significance of the findings. 
+    The use of BIC value only to categorize the citation values is due to the availability and constraint of the data and user.
+    The use of AIC value should not be prioritized as AIC\textsubscript{c} values are more reliable in predicting a good model. 
+    \\
+    \\
+    In future studies, the amount of iteration and initial value could also change the model favorability, as a lower or higher value could favor a certain model that relied on initial values.
+    When compared with the number of models being tested, the dataset with low data points could also be excluded.
+    Apart from categorizing the citation sources, categorizing other variables could prove insightful.
+    Even though the mechanistic model seems to perform better than the phenomenological, further studies could provide additional models and test to investigate the goodness of fit for other models.
+
+    \section{Conclusion}
+    To conclude, Gompertz mechanistic model is preferred for the dataset of bacterial growth being examined in this report.
+    Yet, we should consider the relevancy and importance of the phenomenological model and determine them based on how efficient it is individually \cite{white2019should}.
+    One model explaining a phenomenon might not be sufficient due to its limited number of components. However, when multiple models are sufficiently presented coherently, they can be used to fully explain a process or state \cite{levins1966strategy} such as the growth of bacteria.
+    The process of bacterial growth is highly biologically complex and a process that we yet fully understand. 
+    Therefore, the development of a universal model might not be sufficient. Instead, multiple models might be necessary to comprehend the system's complexity.
+
+ \newpage
+\bibliography{references.bib}
+\end{document}
