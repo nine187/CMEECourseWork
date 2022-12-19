@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+"""
+testing profile function
+"""
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: proifleme.py
+#Created: Nov 2022
+#Desc: Pprofileme script
+
 def my_squares(iters):
     out = []
     for i in range(iters):

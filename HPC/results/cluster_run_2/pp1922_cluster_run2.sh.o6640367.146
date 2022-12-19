@@ -1,0 +1,111 @@
+running R
+
+R version 4.2.2 (2022-10-31) -- "Innocent and Trusting"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-conda-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # CMEE 2022 HPC excercises R code HPC run code pro forma
+> # For neutral model cluster run
+> 
+> #close workplace and clear graphics
+> rm(list=ls()) 
+> dev.off
+function (which = dev.cur()) 
+{
+    if (which == 1) 
+        stop("cannot shut down device 1 (the null device)")
+    .External(C_devoff, as.integer(which))
+    dev.cur()
+}
+<bytecode: 0x5631980b9a48>
+<environment: namespace:grDevices>
+> 
+> # Source the function file
+> source("/rds/general/user/pp1922/home/pp1922_HPC_2022_main.R")
+> #source("pp1922_HPC_2022_main.R")
+> 
+> # Do all the things we want it to do here (figure out the right parameters,
+> # set random seed, run the function which produces the output)
+> 
+> # Find out the job number:
+> iter <- as.numeric(Sys.getenv("PBS_ARRAY_INDEX"))
+> #local running
+> #seed_number = 1:1000
+> 
+> # Set this as the random seed so that all runs have a unique seed:
+> set.seed(iter)
+> 
+> #assign the four conditions
+> cond_1 <- state_initialise_adult(4,100)
+> cond_2 <- state_initialise_adult(4,10)
+> cond_3 <- state_initialise_spread(4,100)
+> cond_4 <- state_initialise_spread(4,10)
+> #ensure that 250 simulations are allocated to each initial conditions
+> if (iter >= 1 && iter <= 250) initial_state <- cond_1
+> if (iter > 251 && iter <= 500) initial_state <- cond_2
+> if (iter > 501 && iter <= 750) initial_state <- cond_3
+> if (iter > 751 && iter <= 1000) initial_state <- cond_4
+> 
+> #save the output
+> file_name <- paste("/rds/general/user/pp1922/home/section2_",iter,".rda", sep="")
+> #local testing
+> #file_name <- paste("section2_",iter,".rda", sep="")
+> 
+> #set the projection matrix and clutch distribution here in case 
+> projection_matrix <- matrix(c(0.1, 0.6, 0.0, 0.0,
++                               0.0, 0.4, 0.4, 0.0,
++                               0.0, 0.0, 0.7, 0.25,
++                               2.6, 0.0, 0.0, 0.4),nrow=4,ncol=4)
+> clutch_distribution <- c(0.06,0.08,0.13,0.15,0.16,0.18,0.15,0.06,0.03)
+> #run for 120 steps
+> simulation_length <- 120
+> 
+> pop_size <- stochastic_simulation(initial_state, projection_matrix,clutch_distribution,simulation_length)
+> save(pop_size, file = file_name)
+> 
+> #failed attempts##
+> #create a variable that has unique name to store result
+> #all_files <- list()
+> #for (i in 1:1000){
+> #use this to create a list of all unique IDs
+> #list(file=paste("pp1922_simulation2", seed_number, ".rda", sep =""))
+> #a <- c()
+> #name <- paste("pp1922_simulation2_",i,sep="")
+> #tmp <- list(a)
+> #all_files[[name]] <- tmp
+> #} 
+> 
+> #call the function and save the results within the function
+> #for (i in 1:1000){
+> #browser()
+> #all_files$pp1922_simulation2_[i] <- stochastic_simulation(initial_state, projection_matrix,
+> #clutch_distribution,simulation_length)
+> #save(output[i],file=paste("section2_",seed_number,".rda",sep=""))
+> #}
+> 
+> 
+Done with running R
+
+============================================
+
+        Job resource usage summary 
+
+                 Memory (GB)    NCPUs
+ Requested  :         1             1
+ Used       :         0 (peak)   1.00 (ave)
+
+============================================

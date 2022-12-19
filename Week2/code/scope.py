@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""A scirpt containing a function that determine a variable within a scope."""
+"""
+A scirpt containing a function that determine a variable within a scope.
+"""
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 

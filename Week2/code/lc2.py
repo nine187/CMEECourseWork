@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-"""Second practical for Python"""
+"""
+Second practical for Python
+"""
 
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'

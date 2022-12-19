@@ -42,8 +42,6 @@ This directory contains the scripts, data, and results from week 3. <br /> This 
  sample.R | sample of vectorized and non-vectorized code
  SQLinR.R | SQLite package
  TreeHeight.R | Practical on Treeheight
- Vectorize1.R | Example on vectorization
- Vectorize2.R | Practical on vectorizaion
  TAutoCorr.bib | Bibliography on the groupwork writeup for TAutoCorr.R script
  TAutoCorr.R | Script running the corrletion analysis of 10000 permutated sucessive year of temperature in Florida
  TAutoCorr.tex | Script running the LaTeX file for the report on TAutorCorr.R

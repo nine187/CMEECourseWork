@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Different foo function examples."""
+"""
+Different foo function examples.
+"""
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 

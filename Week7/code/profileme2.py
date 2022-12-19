@@ -1,3 +1,13 @@
+#!/usr/bin/env python3
+"""
+Script using loop to improve profile
+"""
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: proifleme2.py
+#Created: Nov 2022
+#Desc: Pprofileme script
+
+
 def my_squares(iters):
     out = [i ** 2 for i in range(iters)]
     return out

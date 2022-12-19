@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""
+Plot the resource and consumer relationship with Lotka-Volaterra model with an argument input
+"""
 #Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
 #Script: LV2.py
 #Created: Nov 2022

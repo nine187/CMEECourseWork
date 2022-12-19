@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""This script is designed to align DNA sequences to the closest possible match"""
+"""
+This script is designed to align DNA sequences to the closest possible match
+"""
 __author__ = 'Pasith Prayoonrat (pp1922@ic.ac.uk)'
 __version__ = '0.0.1'
 

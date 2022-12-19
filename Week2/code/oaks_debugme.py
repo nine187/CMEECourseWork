@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""A practical problem on debugging of a function that determine whether a species is an oak."""
+"""
+A practical problem on debugging of a function that determine whether a species is an oak.
+"""
 __author__ = 'Dashing Dingos'
 __version__ = '0.0.1'
 

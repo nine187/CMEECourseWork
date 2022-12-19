@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+
+"""
+Plot consumer and resource relationship with the Lotka-Volaterra model
+"""
+
 #Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
 #Script: LV1.py
 #Created: Nov 2022
@@ -27,6 +33,7 @@ e = 0.75
 #define the time vector
 t = np.linspace(0, 15, 1000)
 
+#assign the variables
 R0 = 10
 C0 = 5
 RC0 = np.array([R0, C0])
@@ -36,6 +43,7 @@ type(infodict)
 infodict.keys()
 infodict['message']
 
+#plot
 f1 = p.figure()
 p.plot(t, pops[:,0], 'g-', label='Resource density')
 p.plot(t, pops[:,1]  , 'b-', label='Consumer density')
@@ -52,5 +60,6 @@ p.xlabel('Resource density')
 p.ylabel('Consumer density')
 p.title('Consumer-Resource population dynamics')
 
+#save the file in the results folder
 f1.savefig('../results/LV_model.pdf')
 f2.savefig('../results/LV_model2.pdf')

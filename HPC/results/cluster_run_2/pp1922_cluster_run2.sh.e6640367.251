@@ -1,0 +1,3 @@
+Error in stochastic_simulation(initial_state, projection_matrix, clutch_distribution,  : 
+  object 'initial_state' not found
+Execution halted

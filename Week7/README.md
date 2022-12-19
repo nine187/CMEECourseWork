@@ -28,3 +28,7 @@ profileme2.py | Python profilign script
 TestR.py | Test script running R from python
 TestR.R | Test script running R from python
 timeitme.py | Script with timeit function example
+ Vectorize1.R | Example on vectorization
+ Vectorize2.R | Practical on vectorizaion
+ Vectorize1.py | Python version of Vectorize1.R
+ Vectorize2.py | Python version of Vectorize2.R
