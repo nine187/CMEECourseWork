@@ -7,7 +7,7 @@
 # this file before you source it.
 
 rm(list=ls())
-test_username <- "pp1922" # this should be your username
+test_username <- "abc123" # this should be your username
 year <- 2022
 # ======= MARK DATA INITIALISATION ======= #
 
