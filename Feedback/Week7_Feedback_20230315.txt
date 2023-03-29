@@ -1,0 +1,1224 @@
+Starting code feedback for Pasith, Week7
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 194.62 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: .git, Week7, GIS_week, Week1, Week3, Feedback, HPC, Miniproject, Week2
+
+Found the following files in parent directory: README.md, .gitignore
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+
+**********************************************************************
+#allow list
+.gitkeep
+!README.md
+!.gitignore
+!/code
+!/results
+!/sandbox
+!/data
+
+#ignore list
+*.pdf
+*.aux
+*.bbl
+*.log
+*.blg
+*.tmp
+*.rasta
+
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+# CMEE Coursework Repository
+
+![alt text](https://pxl-imperialacuk.terminalfour.net/fit-in/720x462/prod01/channel_2/media/migration/visit/Fern--t_1448877552018_0--tojpeg_1572444324894_x4.jpg)
+\\
+*Author: Pasith Prayoonrat*
+
+*Created: Oct 2022*
+
+This is the repository of the work attempted by Pasith Prayoonrat on the "Multilingual Quantitative Biologist" course within the Computational Methods in Ecology and Evolution (CMEE) course taught in the first term. (https://mhasoba.github.io/TheMulQuaBio/intro.html)
+
+## Table of Contents
+1. Week 1: UNIX and Linux, shell scripting, git and Latex
+2. Week 2: Python
+3. Week 3: R
+4. Week 7: Python 2
+5. Miniproject: Project about model fitting
+6. HPC: High Performance Computing Work
+
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 5 weekly directories: GIS_week, Week1, Week2, Week3, Week7
+
+The Week7 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK7...
+
+Found the following directories: code, sandbox, results, data
+
+Found the following files: README.md
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+# Week 7
+
+*Author: Pasith Prayoonrat*
+
+*Created: Week 7*
+
+This directory contains the scripts, data, and results from week 7. <br /> This README file will contain detailed information on the files in the code directory.
+
+## Directory Structure:
+
+*codes: This directory contains all the relevant codes in week 7.*<br />
+*data: Contains files holding data that could be use in the relevant script.*<br />
+*sandbox: This is my playground.*<br />
+*results: Contains relevant output of the codes written in week 7.*<br />
+
+### In Code you shall find:
+ 
+ Script       | Description
+ ------------- | -------------
+LV1.py |  The script demonstrating matplotlib with the Lotka Volterra's model
+LV2.py | The script demonstrating matpolotlib with the Lotka Volterra's model
+fmr.R | Script for creating fmr plot
+run_fmr_R.py | Run fmr script with python
+LV1_LV2.sh | A shellscript for running LV1 and LV2 scripts
+MyFirstJupyterNb.ipynb | Jupyter Notebook intro script
+profileme.py | Python profiling script
+profileme2.py | Python profilign script
+TestR.py | Test script running R from python
+TestR.R | Test script running R from python
+timeitme.py | Script with timeit function example
+ Vectorize1.R | Example on vectorization
+ Vectorize2.R | Practical on vectorizaion
+ Vectorize1.py | Python version of Vectorize1.R
+ Vectorize2.py | Python version of Vectorize2.R
+**********************************************************************
+
+Results directory is empty - good! 
+
+Found 15 code files: Vectorize2.py, TestR.py, LV1.py, LV2.py, profileme2.py, fmr.R, Vectorize1.py, run_fmr_R.py, profileme.py, LV1_LV2.sh, MyFirstJupyterNb.ipynb, Vectorize2.R, TestR.R, Vectorize1.R, timeitme.py
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file Vectorize2.py...
+
+File contents are:
+
+**********************************************************************
+""""Stochastic implementation of the Ricker model and a vectorised version"""
+
+__appname__ = "Vectorise2.py"
+__author__ = "Dashing Dingos"
+__version__ = "0.0.1"
+__license__ = "CMEE"
+
+# Import packages
+import numpy as np
+import sys
+import time
+
+# from Vec~2.R Non-Vectorized Stochastic Ricker equation with gaussian fluctuations
+def stochrick(p0=np.random.uniform(.5, 1.5, 1000), r=1.2, K=1, sigma=0.2, numyears=100):
+    """"Runs the stochastic Ricker equation with Gaussian fluctuations"""
+
+    N = np.zeros((numyears, len(p0))) 
+
+    N[0] = p0 #initialize empty matrix
+
+    for pop in range(len(p0)):  #loop through the populations
+        for yr in range(1, numyears):    #for each pop, loop through the years
+            N[yr, pop] = N[yr - 1, pop] * np.exp(r * (1 - N[yr - 1, pop] / K) + np.random.normal(0, sigma, 1))# add one fluctuation from normal distribution
+    return N
+
+# Vectorizes the above to the extent possible, with improved performance:
+
+def stochrickvect(p0=np.random.uniform(.5, 1.5, 1000), r=1.2, K=1, sigma=0.2, numyears=100):
+    """"Runs vectorised version of stochastic Ricker equation with Gaussian fluctuations"""
+
+    N = np.zeros((numyears, len(p0)))  # initialize empty matrix
+    N[0] = p0
+    for yr in range(1, numyears):  # for each pop, loop through the years
+        # note: adds fluctuation from normal distribution at end of line
+        N[yr] = N[yr - 1] * np.exp(r * (1 - N[yr - 1] / K) + np.random.normal(0, sigma, len(p0)))
+    return N
+
+# Time the two functions
+def main(argv):
+    """Function to timing the running time for two defined function"""
+
+    # 1: Time the looping function 
+    start = time.time()
+    T = stochrick()
+    end = time.time()
+    print("Non-vectorized Stochastic Ricker in Python takes:",end - start, "seconds")
+
+    # 2: Time the vectorized function
+    start = time.time()
+    T = stochrickvect()
+    end = time.time()
+    print("Vectorized Stochastic Ricker in Python takes:",end - start, "seconds")
+
+
+if __name__ == "__main__":
+    status = main(sys.argv)
+    sys.exit(status)
+**********************************************************************
+
+Testing Vectorize2.py...
+
+Vectorize2.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Current Points = 100
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Non-vectorized Stochastic Ricker in Python takes: 0.6937260627746582 seconds
+Vectorized Stochastic Ricker in Python takes: 0.005232810974121094 seconds
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.84373s
+
+======================================================================
+Inspecting script file TestR.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+# Author: Pasith Prayoonrat
+# Script: TestR.py
+# Description: This script demonstrates running R from python 
+# Date: December 2022
+
+"""Demonstrating running R from python"""
+
+#import the subprocess module
+import subprocess
+
+subprocess.Popen("Rscript --verbose TestR.R > ../results/TestR.Rout 2> ../results/TestR_errFile.Rout", shell=True).wait()
+**********************************************************************
+
+Testing TestR.py...
+
+TestR.py is a Python script file;
+
+checking for docstrings...
+
+Found no functions, but one docstring for the script, good
+
+Current Points = 100
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.20810s
+
+======================================================================
+Inspecting script file LV1.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+
+"""
+Plot consumer and resource relationship with the Lotka-Volaterra model
+"""
+
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: LV1.py
+#Created: Nov 2022
+#Desc: Practical work on Biological Python 2
+
+#import stuff
+import numpy as np
+import scipy.integrate as integrate
+import matplotlib.pylab as p
+
+#function for the equation
+def dCR_dt(pops, t=0):
+    R = pops[0]
+    C = pops[1]
+    dRdt = r * R - a * R * C
+    dCdt = -z * C + e * a * R * C
+    return np.array([dRdt, dCdt])
+
+type(dCR_dt)
+
+#assign the parameter values
+r = 1
+a = 0.1
+z = 1.5
+e = 0.75
+
+#define the time vector
+t = np.linspace(0, 15, 1000)
+
+#assign the variables
+R0 = 10
+C0 = 5
+RC0 = np.array([R0, C0])
+pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output = True)
+pops
+type(infodict)
+infodict.keys()
+infodict['message']
+
+#plot
+f1 = p.figure()
+p.plot(t, pops[:,0], 'g-', label='Resource density')
+p.plot(t, pops[:,1]  , 'b-', label='Consumer density')
+p.grid()
+p.legend(loc='best')
+p.xlabel('Time')
+p.ylabel('Population density')
+p.title('Consumer-Resource population dynamics')
+
+f2 = p.figure()
+p.plot(pops[:,0], pops[:,1], 'r-')
+p.grid()
+p.xlabel('Resource density')
+p.ylabel('Consumer density')
+p.title('Consumer-Resource population dynamics')
+
+#save the file in the results folder
+f1.savefig('../results/LV_model.pdf')
+f2.savefig('../results/LV_model2.pdf')
+**********************************************************************
+
+Testing LV1.py...
+
+LV1.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 99.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 1.21550s
+
+======================================================================
+Inspecting script file LV2.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+"""
+Plot the resource and consumer relationship with Lotka-Volaterra model with an argument input
+"""
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: LV2.py
+#Created: Nov 2022
+#Desc: Practical work on Biological Python 2
+
+#import stuff
+import numpy as np
+import scipy.integrate as integrate
+import matplotlib.pylab as p
+import sys
+
+#function for the equation
+def dCR_dt(pops, t=0):
+    R = pops[0]
+    C = pops[1]
+    dRdt = r * R * (1 - ( R / K ))- a * R * C
+    dCdt = -z * C + e * a * R * C
+
+    return np.array([dRdt, dCdt])
+
+type(dCR_dt)
+
+#define the time vector
+t = np.linspace(0, 15, 1000)
+
+#initial value
+R0 = 10
+C0 = 5
+RC0 = np.array([R0, C0])
+K = 1000
+
+#function
+def LV(r, a, z ,e, K):
+    pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output = True)
+    print("The final poppulation density for R(Resources) is",str(pops[-1,0]),"and C(Consumers) is",pops[-1,1])
+    pops
+    type(infodict)
+    infodict.keys()
+    infodict['message']
+
+#visualization
+    f1 = p.figure()
+    p.plot(t, pops[:,0], 'g-', label='Resource density')
+    p.plot(t, pops[:,1]  , 'b-', label='Consumer density')
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Time')
+    p.ylabel('Population density')
+    p.title('Consumer-Resource population dynamics')
+    p.text(16,1,"r = " + str(r))
+    p.text(16,2,"a = " + str(a))
+    p.text(16,3,"z = " + str(z))
+    p.text(16,4,"e = " + str(e))
+    p.text(16,5,"K = " + str(int(K)))
+
+    f2 = p.figure()
+    p.plot(pops[:,0], pops[:,1], 'r-')
+    p.grid()
+    p.xlabel('Resource density')
+    p.ylabel('Consumer density')
+    p.title('Consumer-Resource population dynamics')
+    p.text(10.5,1,"r = " + str(r))
+    p.text(10.5,2,"a = " + str(a))
+    p.text(10.5,3,"z = " + str(z))
+    p.text(10.5,4,"e = " + str(e))
+    p.text(10.5,5,"K = " + str(int(K)))
+
+    f1.savefig('../results/LV2_model.pdf')
+    f2.savefig('../results/LV2_model2.pdf')
+
+#sys.argv for multiple arguments 
+if __name__ == "__main__":
+    if len(sys.argv) == 6:
+        #import ipdb; ipdb.set_trace()
+        r = float(sys.argv[1])
+        a = float(sys.argv[2])
+        z = float(sys.argv[3])
+        e = float(sys.argv[4])
+        K = float(sys.argv[5])
+        LV(r, a, z, e, K)
+    else:
+        print("Using default variables of r = 0.5, a = 0.5, z = 0.5, e = 0.5 and K = 10.")
+        r = float(0.5)
+        a = float(0.5)
+        z = float(0.5)
+        e = float(0.5)
+        K = float(10)
+        LV(r, a, z, e, K)
+**********************************************************************
+
+Testing LV2.py...
+
+LV2.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 98.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Using default variables of r = 0.5, a = 0.5, z = 0.5, e = 0.5 and K = 10.
+The final poppulation density for R(Resources) is 0.4408643524588358 and C(Consumers) is 0.008064236436780246
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 1.20629s
+
+======================================================================
+Inspecting script file profileme2.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+"""
+Script using loop to improve profile
+"""
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: proifleme2.py
+#Created: Nov 2022
+#Desc: Pprofileme script
+
+
+def my_squares(iters):
+    out = [i ** 2 for i in range(iters)]
+    return out
+
+def my_join(iters, string):
+    out = ''
+    for i in range(iters):
+        out += ", " + string
+    return out
+
+def run_my_funcs(x,y):
+    print(x,y)
+    my_squares(x)
+    my_join(x,y)
+    return 0
+
+run_my_funcs(10000000, "My string")
+**********************************************************************
+
+Testing profileme2.py...
+
+profileme2.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 97.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+10000000 My string
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 3.29605s
+
+======================================================================
+Inspecting script file fmr.R...
+
+File contents are:
+
+**********************************************************************
+# Plots log(field metabolic rate) against log(body mass) for the Nagy et al 
+# 1999 dataset to a file fmr.pdf.
+
+cat("Reading CSV\n")
+
+nagy <- read.csv('../data/NagyEtAl1999.csv', stringsAsFactors = FALSE)
+
+cat("Creating graph\n")
+pdf('../results/fmr_plot.pdf', 11, 8.5)
+col <- c(Aves='purple3', Mammalia='red3', Reptilia='green3')
+plot(log10(nagy$M.g), log10(nagy$FMR.kJ.day.1), pch=19, col=col[nagy$Class], 
+     xlab=~log[10](M), ylab=~log[10](FMR))
+for(class in unique(nagy$Class)){
+    model <- lm(log10(FMR.kJ.day.1) ~ log10(M.g), data=nagy[nagy$Class==class,])
+    abline(model, col=col[class])
+}
+dev.off()
+
+cat("Finished in R!\n")
+**********************************************************************
+
+Testing fmr.R...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Reading CSV
+Creating graph
+null device 
+          1 
+Finished in R!
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.26291s
+
+======================================================================
+Inspecting script file Vectorize1.py...
+
+File contents are:
+
+**********************************************************************
+"""Vectorize1.R rewritten in python"""
+
+__appname__ = 'Vectorize1.py'
+__author__ = 'Dashing Dingos'
+__version__ = '0.0.1'
+__license__ = "CMEE"
+
+import numpy as np
+import time
+
+# Generate random numbers
+m = np.random.uniform(low=0 , high=1, size=(1000,1000))
+
+
+#loop 
+def SumAllElements(m):
+    """Loop way to calculate the sum of all random values generated"""
+    Dimentions = m.shape
+    Tot = 0
+    for i in range(0,Dimentions[0]):
+        for j in range(0, Dimentions[1]):
+            Tot = Tot +  m[i,j]
+    
+    return Tot
+
+
+#do time measurement
+# 1:time the looping function
+start = time.time()       
+SumAllElements(m)
+end = time.time()
+Time_period = end - start
+print("Python SumAllElements function: {}".format(Time_period), "seconds")
+
+
+#2:time the vectorized sum function.
+start = time.time()
+m.sum()
+end = time.time()
+Time_period2 = end - start
+print("Python sum vectorised function: {}".format(Time_period2), "seconds")
+
+**********************************************************************
+
+Testing Vectorize1.py...
+
+Vectorize1.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Current Points = 97.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Python SumAllElements function: 0.15300226211547852 seconds
+Python sum vectorised function: 0.0004980564117431641 seconds
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.31111s
+
+======================================================================
+Inspecting script file run_fmr_R.py...
+
+File contents are:
+
+**********************************************************************
+#!usr/bin/env python3
+"""
+Load the subprocess and check for error
+"""
+
+import subprocess
+
+#use subprocess to open the R script
+subprocess.Popen("Rscript fmr.R > ../results/fmrR.Rout 2> ../results/fmrR_errFile.Rout", shell= True).wait()
+
+# open the error file 
+with open("../results/fmrR_errFile.Rout", "r") as a:
+    Error = a.read()
+    #if the length of the object is not equal to zero meaning there is an error
+    if len(Error) != 0:
+        print("Unsucessful run.")
+    #else there are no error and the script ran sucessfully
+    else:
+        print("Sucessful run.")
+        #showing the r console output
+        with open("../results/fmrR.Rout", "r") as b:
+            b.read()
+**********************************************************************
+
+Testing run_fmr_R.py...
+
+run_fmr_R.py is a Python script file;
+
+checking for docstrings...
+
+Found no functions, but one docstring for the script, good
+
+Current Points = 97.0
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Sucessful run.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.26997s
+
+======================================================================
+Inspecting script file profileme.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+"""
+testing profile function
+"""
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: proifleme.py
+#Created: Nov 2022
+#Desc: Pprofileme script
+
+def my_squares(iters):
+    out = []
+    for i in range(iters):
+        out.append(i ** 2)
+    return out
+
+def my_join(iters, string):
+    out = ''
+    for i in range(iters):
+        out += string.join(", ")
+    return out
+
+def run_my_funcs(x,y):
+    print(x,y)
+    my_squares(x)
+    my_join(x,y)
+    return 0
+
+run_my_funcs(10000000,"My string")
+**********************************************************************
+
+Testing profileme.py...
+
+profileme.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 95.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+10000000 My string
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 4.80907s
+
+======================================================================
+Inspecting script file LV1_LV2.sh...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: LV1_LV2.py
+#Created: Nov 2022
+#Desc: Practical work on Biological Python 2
+
+#run the script
+ipython3 LV1.py
+ipython3 LV2.py
+
+
+#profile the scripts
+python3 -m cProfile LV1.py| head -2
+echo
+echo -e "LV1.py profiling complete\n"
+
+python3 -m cProfile LV2.py| head -2
+echo
+echo -e "LV2.py profiling complete\n"
+**********************************************************************
+
+Testing LV1_LV2.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+[22;0t]0;IPython: Week7/code[22;0t]0;IPython: Week7/codeUsing default variables of r = 0.5, a = 0.5, z = 0.5, e = 0.5 and K = 10.
+The final poppulation density for R(Resources) is 0.4408643524588358 and C(Consumers) is 0.008064236436780246
+         2887949 function calls (2866975 primitive calls) in 1.883 seconds
+
+
+LV1.py profiling complete
+
+Using default variables of r = 0.5, a = 0.5, z = 0.5, e = 0.5 and K = 10.
+The final poppulation density for R(Resources) is 0.4408643524588358 and C(Co
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 7.66010s
+
+======================================================================
+Inspecting script file MyFirstJupyterNb.ipynb...
+
+File contents are:
+
+**********************************************************************
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "bb4c2ce3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "Loading required package: ggplot2\n",
+      "\n"
+     ]
+    },
+    {
+     "data": {
+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAAYwAAAEsCAMAAADn+3SWAAAC+lBMVEUAAAABAQECAgIDAwME\nBAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUW\nFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJyco\nKCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc4ODg5OTk6\nOjo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dJSUlKSkpLS0tMTExN\nTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1eXl5f\nX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29wcHBx\ncXFycnJzc3N0dHR1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1+fn5/f3+AgICBgYGCgoKD\ng4OEhISFhYWGhoaHh4eIiIiJiYmKioqLi4uMjIyNjY2Ojo6Pj4+QkJCRkZGSkpKTk5OUlJSV\nlZWWlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5+goKChoaGioqKjo6OkpKSlpaWmpqan\np6eoqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrK0tLS1tbW2tra3t7e4uLi5ubm6\nurq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnKysrLy8vM\nzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc3Nzd3d3e\n3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v7+/w\n8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///8yS3CPAAAA\nCXBIWXMAABJ0AAASdAHeZh94AAAV1UlEQVR4nO2de3wU1dnHn01CLhgUUUAEgvoiF+1bLWkV\ni6KoaIXkFQGpGBFUFFAURMQLFbFSLRUFWqkivgi+1RaMaBWlgApoBCHhHoGIJEDI5QAh98te\n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\nqo4IAAAAAElFTkSuQmCC",
+      "text/plain": [
+       "plot without title"
+      ]
+     },
+     "metadata": {
+      "image/png": {
+       "height": 150,
+       "width": 198
+      }
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "require(ggplot2)\n",
+    "library(repr)# to resize plot within jupyter - this package is part of IRKernel\n",
+    "options(repr.plot.width=3.3,repr.plot.height=2.5)\n",
+    "\n",
+    "x <- seq(0, 5, 0.1); y <- sin(x)\n",
+    "qplot(x, y, geom = \"line\") # large figure"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "15893f8f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/tmp/ipykernel_525338/799143421.py:4: DeprecationWarning: scipy.arange is deprecated and will be removed in SciPy 2.0.0, use numpy.arange instead\n",
+      "  x = sc.arange(0, 5, 0.1); y = sc.sin(x)\n",
+      "/tmp/ipykernel_525338/799143421.py:4: DeprecationWarning: scipy.sin is deprecated and will be removed in SciPy 2.0.0, use numpy.sin instead\n",
+      "  x = sc.arange(0, 5, 0.1); y = sc.sin(x)\n"
+     ]
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 640x480 with 1 Axes>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "import matplotlib.pyplot as p\n",
+    "import scipy as sc\n",
+    "\n",
+    "x = sc.arange(0, 5, 0.1); y = sc.sin(x)\n",
+    "p.plot(x, y); p.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "7fb50c34",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "this is R!"
+     ]
+    }
+   ],
+   "source": [
+    "a <- \"this is R!\"; cat(a)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "cea433d7",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "this is python!\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = \"this is python!\"; print(a)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "R 3.3",
+   "language": "R",
+   "name": "ir33"
+  },
+  "language_info": {
+   "codemirror_mode": "r",
+   "file_extension": ".r",
+   "mimetype": "text/x-r-source",
+   "name": "R",
+   "pygments_lexer": "r",
+   "version": "4.1.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
+
+**********************************************************************
+
+Testing MyFirstJupyterNb.ipynb...
+
+======================================================================
+Inspecting script file Vectorize2.R...
+
+File contents are:
+
+**********************************************************************
+#Author: Dashing Dingos
+#Script: Vectorize2.R
+#Created: Dec 2022
+#Desc: Vectorizantion class work: edited for Groupwork practical on Vectorization
+#      Runs the stochastic Ricker equation with gaussian fluctuations
+
+rm(list = ls())
+
+# Non-Vectorized Stochastic Ricker equation with gaussian fluctuations
+stochrick <- function(p0 = runif(1000, .5, 1.5), r = 1.2, K = 1, sigma = 0.2,numyears = 100)
+{
+
+  N <- matrix(NA, numyears, length(p0))  #initialize empty matrix
+
+  N[1, ] <- p0 #initialize empty matrix
+
+  for (pop in 1:length(p0)) { #loop through the populations
+    for (yr in 2:numyears){ #for each pop, loop through the years
+
+      N[yr, pop] <- N[yr-1, pop] * exp(r * (1 - N[yr - 1, pop] / K)+ rnorm(1, 0, sigma)) # add one fluctuation from normal distribution
+    
+     }
+  }
+
+ return(N)
+}
+
+
+# Vectorizes the above to the extent possible, with improved performance:
+stochrickvect<- function(x, p0 = runif(1000, .5, 1.5), r = 1.2, K = 1, sigma = 0.2,numyears = 100)
+{
+  N <- matrix(NA, numyears, length(p0)) 
+  N[1, ] <- p0
+
+  for (yr in 2:numyears) #loops through years only, R naturally applyies columnwise(poulation) in a vectorized way
+  {
+     N[yr,] <- N[yr-1,] * exp(r* (1-N[yr - 1,] / K) + rnorm(1, 0 ,sigma))
+  }
+
+return(N)
+}
+ 
+# Time the vectorized and loopy function
+# 1: Time the looping function
+start_time_loops <- Sys.time()
+T <- stochrick()
+end_time_loops <- Sys.time()
+time_taken_loops <- difftime(end_time_loops, start_time_loops, units = "secs")[[1]]
+
+# Paste together the time and a string to describe it
+loop_time <- paste("Non-vectorized Stochastic Ricker in R takes:",format(time_taken_loops), "seconds" )
+print(loop_time)
+
+# 2: Time the vectorizedfunction
+start_time_vectorized <- Sys.time()
+T <- stochrickvect()
+end_time_vectorized <- Sys.time()
+time_taken_vectorized <- difftime(end_time_vectorized, start_time_vectorized, units = "secs")[[1]]
+
+# Paste together the time and a string to describe it
+vectorized_time<- paste("Vectorized Stochastic Ricker in R takes:",format(time_taken_vectorized), "seconds" )
+print(vectorized_time)
+
+
+**********************************************************************
+
+Testing Vectorize2.R...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+[1] "Non-vectorized Stochastic Ricker in R takes: 0.2296937 seconds"
+[1] "Vectorized Stochastic Ricker in R takes: 0.009523153 seconds"
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.42759s
+
+======================================================================
+Inspecting script file TestR.R...
+
+File contents are:
+
+**********************************************************************
+# Author: Pasith Prayoonrat
+# Script: TestR.R
+# Description: This script demonstrates test running R
+# Date: December 2022
+
+print("Hello, this is R!")
+**********************************************************************
+
+Testing TestR.R...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+[1] "Hello, this is R!"
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.18485s
+
+======================================================================
+Inspecting script file Vectorize1.R...
+
+File contents are:
+
+**********************************************************************
+#Author: Dashing Dingos
+#Script: Vectorize1.R
+#Created: Dec 2022
+#Desc: Vectorizantion class work: edited for Groupwork practical on Vectorization
+
+# Generate random numbers
+m<- matrix(runif(1000000), 1000, 1000)
+
+# Loopy function
+SumAllElements <- function(m){
+    Dimentions <- dim(m)
+    Tot <- 0
+    for (i in 1:Dimentions[1]) {
+        for (j in 1:Dimentions[2]){
+            Tot <- Tot + m[i,j]
+        }
+    }
+    return(Tot)
+}
+
+
+# Do time measurement
+# 1: Time the looping function
+start_time_loops <- Sys.time()
+T <- SumAllElements(m)
+end_time_loops <- Sys.time()
+time_taken_loops <- difftime(end_time_loops, start_time_loops, units = "secs")[[1]]
+
+# Paste together the time and a string to describe it
+loop_time <- paste("R SumAllElements function:",format(time_taken_loops), "seconds" )
+print(loop_time)
+
+# 2: Time the vectorized function
+start_time_vectorized <- Sys.time()
+T<- sum(m)
+end_time_vectorized <- Sys.time()
+time_taken_vectorized <- difftime(end_time_vectorized, start_time_vectorized, units = "secs")[[1]]
+
+# Paste together the time and a string to describe it
+vectorized_time<- paste("R sum vectorized function:",format(time_taken_vectorized), "seconds" )
+print(vectorized_time)
+
+**********************************************************************
+
+Testing Vectorize1.R...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+[1] "R SumAllElements function: 0.06900382 seconds"
+[1] "R sum vectorized function: 0.0008926392 seconds"
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.28406s
+
+======================================================================
+Inspecting script file timeitme.py...
+
+File contents are:
+
+**********************************************************************
+#!/usr/bin/env python3
+
+"""
+compare loop vs lis vs join method speed
+"""
+#Author: Pasith Prayoonrat (pp1922@ic.ac.uk)
+#Script: timeitme.py
+#Created: Nov 2022
+#Desc: timeitme.py
+
+##############################################################################
+# loops vs. list comprehensions: which is faster?
+##############################################################################
+
+iters = 1000000
+
+import timeit
+
+from profileme import my_squares as my_squares_loops
+
+from profileme2 import my_squares as my_squares_lc
+
+##############################################################################
+# loops vs. the join method for strings: which is faster?
+##############################################################################
+
+mystring = "my string"
+
+from profileme import my_join as my_join_join
+
+from profileme2 import my_join as my_join
+**********************************************************************
+
+Testing timeitme.py...
+
+timeitme.py is a Python script file;
+
+checking for docstrings...
+
+Found no functions, but one docstring for the script, good
+
+Current Points = 95.5
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+10000000 My string
+10000000 My string
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 8.21510s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 0 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 95.5
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!

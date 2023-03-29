@@ -1,0 +1,90 @@
+Starting code feedback for Pasith, Week4
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 194.62 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: .git, Week7, GIS_week, Week1, Week3, Feedback, HPC, Miniproject, Week2
+
+Found the following files in parent directory: README.md, .gitignore
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+
+**********************************************************************
+#allow list
+.gitkeep
+!README.md
+!.gitignore
+!/code
+!/results
+!/sandbox
+!/data
+
+#ignore list
+*.pdf
+*.aux
+*.bbl
+*.log
+*.blg
+*.tmp
+*.rasta
+
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+# CMEE Coursework Repository
+
+![alt text](https://pxl-imperialacuk.terminalfour.net/fit-in/720x462/prod01/channel_2/media/migration/visit/Fern--t_1448877552018_0--tojpeg_1572444324894_x4.jpg)
+\\
+*Author: Pasith Prayoonrat*
+
+*Created: Oct 2022*
+
+This is the repository of the work attempted by Pasith Prayoonrat on the "Multilingual Quantitative Biologist" course within the Computational Methods in Ecology and Evolution (CMEE) course taught in the first term. (https://mhasoba.github.io/TheMulQuaBio/intro.html)
+
+## Table of Contents
+1. Week 1: UNIX and Linux, shell scripting, git and Latex
+2. Week 2: Python
+3. Week 3: R
+4. Week 7: Python 2
+5. Miniproject: Project about model fitting
+6. HPC: High Performance Computing Work
+
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 5 weekly directories: GIS_week, Week1, Week2, Week3, Week7
+
+The Week4 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 100
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!

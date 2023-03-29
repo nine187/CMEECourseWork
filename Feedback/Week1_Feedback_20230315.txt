@@ -1,0 +1,680 @@
+Starting code feedback for Pasith, Week1
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 194.62 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: .git, Week7, GIS_week, Week1, Week3, Feedback, HPC, Miniproject, Week2
+
+Found the following files in parent directory: README.md, .gitignore
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+
+**********************************************************************
+#allow list
+.gitkeep
+!README.md
+!.gitignore
+!/code
+!/results
+!/sandbox
+!/data
+
+#ignore list
+*.pdf
+*.aux
+*.bbl
+*.log
+*.blg
+*.tmp
+*.rasta
+
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+# CMEE Coursework Repository
+
+![alt text](https://pxl-imperialacuk.terminalfour.net/fit-in/720x462/prod01/channel_2/media/migration/visit/Fern--t_1448877552018_0--tojpeg_1572444324894_x4.jpg)
+\\
+*Author: Pasith Prayoonrat*
+
+*Created: Oct 2022*
+
+This is the repository of the work attempted by Pasith Prayoonrat on the "Multilingual Quantitative Biologist" course within the Computational Methods in Ecology and Evolution (CMEE) course taught in the first term. (https://mhasoba.github.io/TheMulQuaBio/intro.html)
+
+## Table of Contents
+1. Week 1: UNIX and Linux, shell scripting, git and Latex
+2. Week 2: Python
+3. Week 3: R
+4. Week 7: Python 2
+5. Miniproject: Project about model fitting
+6. HPC: High Performance Computing Work
+
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 5 weekly directories: GIS_week, Week1, Week2, Week3, Week7
+
+The Week1 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK1...
+
+Found the following directories: code, sandbox, data
+
+Found the following files: README.md
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+
+**********************************************************************
+# Week 1
+
+*Author: Pasith Prayoonrat*
+
+*Created: Week 1*
+
+This directory contains the scripts, data, and results from week 1. <br /> This README file will contain detailed information on the files in the code directory.
+
+## Directory Structure:
+
+*codes: This directory contains all the relevant codes in week 1.*<br />
+*data: Contains files holding data that could be use in the relevant script.*<br />
+*sandbox: This is my playground.*<br />
+*results: Contains relevant output of the codes written in week 1.*<br />
+
+### In Code you shall find:
+ 
+ Script       | Description
+ ------------- | -------------
+ UnixPrac1.txt |  **1.** Line count for all the fasta files **2.** Print all lines in E.coli excluding the first line **3.** Count the number of all ATCG and the sequence length **4.** Find the number of ATGC occurence in the sequence **5.** Calculates and prints the Chargaff's ratio  
+ boilerplate.sh | A boilerplate code
+ ConcatenateTwoFiles.sh  | Concatenate two files into a new third file
+ CountLines.sh | Line count shell script
+ csvtospace.sh | Converts a .csv into a space separated values(csv) file
+ MyExampleScript.sh | Hello user Script
+ tabtocsv.sh | Converts a tab separated values file into a .csv file, will give no output if no files are given
+ tiff2png.sh | Converts a .tiff file into a .png file, will give no output if no files are given
+ variables.sh | Assigns variables given shell script
+ CompileLaTeX.sh | Compile latex and produce a .pdf file
+ FirstBiblio.bib | Bibliography for the latex file
+ FirstExample.tex | A cool latex file
+**********************************************************************
+
+Results directory missing!
+
+Creating Results directory...
+
+Found 12 code files: tiff2png.sh, CountLines.sh, FirstBiblio.bib, tabtocsv.sh, variables.sh, FirstExample.tex, boilerplate.sh, csvtospace.sh, ConcatenateTwoFiles.sh, UnixPrac1.txt, CompileLaTeX.sh, MyExampleScript.sh
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file tiff2png.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: tiff2png.sh
+# Description: convert .tiff file to png
+# Arguments: 1 -> .tiff file
+
+# Date: Oct 2022
+
+if [ "$1" == "" ] #if there are no files provided, the scirpt will as the user to provide a file and exit
+then 
+echo 'Please provide a file.'
+exit
+fi
+
+for f in *.tiff; #regular code from the course that convert .tiff to .png modified from .tif to .tiff
+    do  
+        echo "Converting $f"; 
+        convert "$f"  "$(basename "$f" .tiff).png"; 
+    done
+    exit
+**********************************************************************
+
+Testing tiff2png.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Please provide a file.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00363s
+
+======================================================================
+Inspecting script file CountLines.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: CountLines.sh
+# Description: Count the lines in any given file(or files?)
+
+# Arguments: 1 -> file
+# Date: Oct 2022
+
+if [ $# -eq 0 ]; then 
+#if the amount of arguments inputted is zero the script will print out the message below and exit
+    echo "NO FILES DETECTED! Please input a file."
+    exit
+
+else 
+#standard countline code from the course will run if any argument is provided
+
+    NumLines=`wc -l < $1`
+    echo "The file $1 has $NumLines lines"
+    echo "Done"
+
+fi
+**********************************************************************
+
+Testing CountLines.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+NO FILES DETECTED! Please input a file.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00396s
+
+======================================================================
+Inspecting script file FirstBiblio.bib...
+
+File contents are:
+
+**********************************************************************
+@article{verhulst1838notice,
+  title={Notice on the law that the population follows in its growth},
+  author={Verhulst, PF},
+  journal={Corresp Math Phys},
+  volume={10},
+  pages={113--26},
+  year={1838}
+}
+**********************************************************************
+
+Testing FirstBiblio.bib...
+
+======================================================================
+Inspecting script file tabtocsv.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: tabtocsv.sh
+# Description: substitute the tabs in the files with commas
+
+# Saves the output into a .csv file
+# Arguments: 1 -> tab delimited file
+# Date: Oct 2022
+if [ $# -eq 0 ]; then #if the amount of arguments inputted is zero the script will print out the message below and exit
+
+    echo "NO FILES DETECTED! Please input a file" >&2
+    exit 1
+elif [ ! -s $1 ]; then #if the input file is less than 0 byte the script will print out the message
+
+    echo "Empty file!"
+    exit
+
+elif [ $# -eq 1 ]; then #if the input file is equal to 1 then the script will remove the tab and comma and changing it to a .csv file and move the file to the /results folder
+    echo "NICE! THE FILE NAME IS $1.csv"
+    echo "Creating a comma delimited version of $1 ..."
+    cat $1 | tr -s "\t" "," >> $1.csv
+    echo "Moving $1.csv to results directory"
+    mv $1 ../results/
+    echo "Done!"
+    exit
+fi
+**********************************************************************
+
+Testing tabtocsv.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+
+***IGNORE IF THIS ERROR IS EXPECTED AS PART OF AN IN-CLASS EXERCISE***
+
+NO FILES DETECTED! Please input a file
+
+======================================================================
+Inspecting script file variables.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: variables.sh
+# Description: assign values to variables 
+
+# Arguments: 2 (string value or integer value as variables)
+# Date: Oct 2022
+## Illustrates the use of variables 
+
+# Special variables- how variables are assigned in the script
+
+echo "This script was called with $# parameters"
+echo "The script's name is $0"
+echo "The arguments are $@"
+echo "The first argument is $1"
+echo "The second argument is $2"
+
+# Assigned Variables; Explicit declaration:
+MY_VAR='some string' 
+echo 'the current value of the variable is:' $MY_VAR
+echo
+echo 'Please enter a new string'
+read MY_VAR
+echo
+echo 'the current value of the variable is:' $MY_VAR
+echo
+
+## Assigned Variables; Reading (multiple values) from user input:
+echo 'Enter two numbers separated by space(s)'
+read a b
+echo
+echo 'you entered' $a 'and' $b '; Their sum is:'
+
+## Assigned Variables; Command substitution
+MY_SUM=$(expr $a + $b)
+echo $MY_SUM
+**********************************************************************
+
+Testing variables.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+This script was called with 0 parameters
+The script's name is variables.sh
+The arguments are 
+The first argument is 
+The second argument is 
+the current value of the variable is: some string
+
+Please enter a new string
+
+the current value of the variable is:
+
+Enter two numbers separated by space(s)
+
+you entered and ; Their sum is:
+
+
+**********************************************************************
+
+Encountered error (or warning):
+
+***IGNORE IF THIS ERROR IS EXPECTED AS PART OF AN IN-CLASS EXERCISE***
+
+expr: syntax error: missing argument after ‘+’
+
+======================================================================
+Inspecting script file FirstExample.tex...
+
+File contents are:
+
+**********************************************************************
+\documentclass[12pt]{article}
+
+\title{A Simple Document}
+
+\author{Your Name}
+
+\date{}
+
+\begin{document}
+  \maketitle
+  
+  \begin{abstract}
+    This paper analyzes a seminal equation in population biology.
+  \end{abstract}
+  
+  \section{Introduction}
+    Blah Blah
+  
+  \section{Materials \& Methods}
+  
+  A foundational equation of population biology is:
+  
+  \begin{equation}
+    \frac{dN}{dt} = r N (1 - \frac{N}{K})
+  \end{equation}
+  
+  It was first proposed by Verhulst in 1838 \cite{verhulst1838notice}.
+  
+  \bibliographystyle{plain}
+  
+  \bibliography{FirstBiblio}
+
+\end{document}
+**********************************************************************
+
+Testing FirstExample.tex...
+
+======================================================================
+Inspecting script file boilerplate.sh...
+
+File contents are:
+
+**********************************************************************
+#!/binsh
+#Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: boilerplate.sh
+#Desc: simple boilerplate for shell scripts
+#Arguments: none
+#Date: Oct 2022
+
+echo -e "\nThis is a shell script! \n"
+
+#exit
+**********************************************************************
+
+Testing boilerplate.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+This is a shell script! 
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00363s
+
+======================================================================
+Inspecting script file csvtospace.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/sh
+# Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: csvtospace.sh
+# Description: substitute the csv in the files to space
+
+# Saves the output into a .txt file
+# Arguments: 1 -> comma delimited file
+# Date: Oct 2022
+
+if [ $# -eq 0 ]; then #if the amount of arguments inputted is zero the script will print out the message below and exit
+    echo "NO FILE DETECTED! Please input a .csv file" >&2
+    exit
+
+elif [ $# -eq 1 ]; then #if the amount of arguments inputted is one the script will print out the message below and exit and move the file in the /results folder
+    echo "Creating a delimited version of $1 ..."
+    cat $1 | tr -s "," " " >> $1.txt
+    echo "Moving $1 file to results"
+    mv $1.txt ../results/
+    echo "Done!"
+    exit
+
+else #if for any other conditions that there are more than 1 argument, the script will return a wrong input text
+    echo "Wrong Input"
+    exit
+
+fi
+**********************************************************************
+
+Testing csvtospace.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+
+***IGNORE IF THIS ERROR IS EXPECTED AS PART OF AN IN-CLASS EXERCISE***
+
+NO FILE DETECTED! Please input a .csv file
+
+======================================================================
+Inspecting script file ConcatenateTwoFiles.sh...
+
+File contents are:
+
+**********************************************************************
+#!/bin/bash
+# Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: ConcatenateTwoFiles.sh
+# Description: concatenate the two files inputted 
+
+# Saves the output into a .txt file
+# Arguments: 1 -> tab dlimited file
+# Date: Oct 2022
+
+if [ $# -eq 2 ]; then #if the number of arguments is equal to 2 then the file will be concatenated and move the file to /results folder
+    echo "Merging $1 and $2."
+    echo "Please enter the name of the merged file."
+    read outputname
+    echo
+    cat $1 > $outputname
+    cat $2 >> $outputname
+    echo "Merged File is $outputname"
+    echo "Moving $outputname file to results"
+    mv $outputname ../results/
+    echo "Done!"
+
+else #if more than 2 or less than 2 arguments are provided the script will ask the user to input the correct amount of files
+    echo " Please input 2 files"
+    exit
+    fi
+**********************************************************************
+
+Testing ConcatenateTwoFiles.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+ Please input 2 files
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00244s
+
+======================================================================
+Inspecting script file UnixPrac1.txt...
+
+File contents are:
+
+**********************************************************************
+#UNIX Practice WEEK1
+#Author: Pasith Prayoonrat
+# October 2022
+
+
+#1 cd back to the fasta file (this will be the default directory for all the codes below) and use wordcount -l to count the lines
+
+wc -l  ../data/*.fasta
+
+#2 use tail -n\+2 which ignores the first line of the fasta file and print the rest of the sequence
+
+tail -n\+2 ../data/E.coli.fasta 
+
+#3 use tail -n\+2 to read from the second line and tr -d to remove the line break, and wc -m to count all the letters
+
+tail -n\+2 ../data/E.coli.fasta |tr -d "\n" | wc -m
+
+#4 use grep -o to find the exact sequence in the genome, use tr -d to remove the line break and use word count -m to show the number of matches found 
+with grep command
+
+grep -o 'ATGC' ../data/E.coli.fasta |tr -d "\n" |wc -m
+
+#5 use echo to show the AT/CG ratio within the echo there is 2 main chunks of code, the first one is for AT wchich use tail to read the
+sequence from the second line at the data file then remove the breakline with \n and use grep to find the A&T ratio along with wc -l to find the
+frequency of the AT in the sequence and divided by the same method at for CG frequency
+
+echo $(tail -n\+2 ../data/E.coli.fasta | tr -d '\n' | grep -o "A\|T" | wc -l) / $(tail -n\+2 ../data/E.coli.fasta | tr -d '\n' | grep -o "G\|C" | wc -l) | bc -l
+**********************************************************************
+
+Testing UnixPrac1.txt...
+
+======================================================================
+Inspecting script file CompileLaTeX.sh...
+
+File contents are:
+
+**********************************************************************
+#/!/bin/bash
+# Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: CompileLaTeX.sh
+# Description: Compile .tex and .bib into a single pdf
+
+# Saves the output as .pdf file
+# Arguments: 1 (.tex file)
+# Date: Oct 2022
+
+#run this by typing bash CompileLaTeX.sh FirstExample
+
+if [ $# -eq 1 ] #check if an argument is provided, the script will break if more than one argument is provided (no time to fix)
+then
+
+echo " Creating the pdf with the bibliography. "
+pdflatex $1 #somehow when I input the file with a .tex extension (FirstExample.tex) the script gave an error respond but when I input just the file name (FirstExample), the script works fine
+bibtex $1
+pdflatex $1
+pdflatex $1
+evince $1.pdf
+echo "Cleaning up..."
+## Cleanup
+rm *.aux
+rm *.log
+rm *.bbl
+rm *.blg
+mv $1.pdf ../results/
+
+else #if the argument provided is not equal to one the script will return this output
+echo "Please input FirstExample or other .tex file as an argument, other input will definitely break this script."
+fi
+exit
+**********************************************************************
+
+Testing CompileLaTeX.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Please input FirstExample or other .tex file as an argument, other input will definitely break this script.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00310s
+
+======================================================================
+Inspecting script file MyExampleScript.sh...
+
+File contents are:
+
+**********************************************************************
+#!/binsh
+#Author: Pasith Prayoonrat pp1922@ic.ac.uk
+# Script: MyExampleScript.sh
+#Description: My Example script
+
+#Arguments: none
+#Date: Oct 2022
+
+#basic script used to echo the user
+MSG1="Hello"
+MSG2=$USER
+echo "$MSG1 $MSG2"
+echo "Hello $USER"
+echo
+**********************************************************************
+
+Testing MyExampleScript.sh...
+
+Output (only first 500 characters): 
+
+
+**********************************************************************
+Hello mhasoba
+Hello mhasoba
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00316s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 3 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 100
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
